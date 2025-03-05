@@ -22,7 +22,11 @@ The forage production in the units provided, either 'kg/ha' or 'lb/acre'.
 Calculate Forage Production
 }
 \examples{
-sample_area <- calc_plot_area(dim_x = 50, dim_y = 50, units = "cm")
+sample_area <- calc_plot_area(
+  dim_x = 50,
+  dim_y = 50,
+  units = "cm"
+)
 calc_forage_prod(
   sample_wt = 100,
   sample_units = "g",
