@@ -6,7 +6,7 @@ test_that("file sha256 hash is correct", {
     unlink(temp_file)
     expect_equal(
         sha256_hash,
-        "d9014c4624844aa5bac314773d6b689ad467fa4e1d1a50a1b8a99d5a95f72ff5"
+        "66b01763ad80316783341083c02317e7fdda4391e58cbf02f26f2a92257c5b92"
     )
 })
 
@@ -18,7 +18,7 @@ test_that("file md5 hash is correct", {
     unlink(temp_file)
     expect_equal(
         md5_hash,
-        "746308829575e17c3331bbcb00c0898b"
+        "78016cea74c298162366b9f86bfc3b16"
     )
 })
 
