@@ -14,6 +14,10 @@ calc_forage_production <- function(dim_x, dim_y, plot_units, output_units) {
         stop("You must provide both dim_x and dim_y.")
     }
 
+    if (dim_x <= 0 | dim_y <= 0) {
+        stop("dim_x and dim_y must be positive.")
+    }
+
     if (plot_units != "cm" | plot_units != "m" | plot_units != "in" | plot_units != "ft") {
         stop("plot_units must be either 'cm', 'm', 'in', or 'ft'.")
     }
