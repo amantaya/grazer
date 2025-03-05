@@ -47,8 +47,17 @@ calc_plot_area <- function(dim_x, dim_y, units) {
 #' @return The forage production in the units provided, either 'kg/ha' or 'lb/acre'.
 #'
 #' @examples
-#' sample_area <- calc_plot_area(dim_x = 50, dim_y = 50, units = "cm")
-#' calc_forage_prod(sample_wt = 100, sample_units = "g", sample_area = sample_area, output_units = "kg/ha")
+#' sample_area <- calc_plot_area(
+#'   dim_x = 50,
+#'   dim_y = 50,
+#'   units = "cm"
+#' )
+#' calc_forage_prod(
+#'   sample_wt = 100,
+#'   sample_units = "g",
+#'   sample_area = sample_area,
+#'   output_units = "kg/ha"
+#' )
 #'
 #' @export
 #' @importFrom units set_units
@@ -59,7 +68,7 @@ calc_forage_prod <- function(sample_wt, sample_units, sample_area, output_units)
     sample_area_m2 <- units::set_units(sample_area, "m^2")
 
     sample_wt_per_m2 <- sample_wt/sample_area_m2
-    
+
     if (output_units == "kg/ha") {
         forage_production <- units::set_units(sample_wt_per_m2, "kg/hectare")
     } else if (output_units == "lb/acre") {
