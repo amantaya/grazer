@@ -8,7 +8,7 @@
 #'
 #' @export
 #' @importFrom units set_units
-get_plot_area <- function(dim_x, dim_y, units) {
+calc_plot_area <- function(dim_x, dim_y, units) {
 
     if (missing(dim_x) | missing(dim_y)) {
         stop("You must provide both dim_x and dim_y.")

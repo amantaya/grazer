@@ -1,6 +1,6 @@
 test_that("both dimensions must be positive", {
   expect_error(
-    get_plot_area(
+    calc_plot_area(
       dim_x = -30,
       dim_y = 30,
       units = "cm"
@@ -11,7 +11,7 @@ test_that("both dimensions must be positive", {
 
 test_that("plot_size units must be valid", {
   expect_error(
-    get_plot_area(
+    calc_plot_area(
       dim_x = 30,
       dim_y = 30,
       units = "unknown unit"
@@ -22,7 +22,7 @@ test_that("plot_size units must be valid", {
 
 test_that("both dimensions must be provided", {
   expect_error(
-    get_plot_area(
+    calc_plot_area(
       dim_x = 30,
       units = "cm"
       ),
@@ -31,7 +31,7 @@ test_that("both dimensions must be provided", {
 })
 
 test_that("plot_area is calculated correctly for centimeters", {
-  result <- get_plot_area(
+  result <- calc_plot_area(
     dim_x = 30,
     dim_y = 30,
     units = "cm"
@@ -41,7 +41,7 @@ test_that("plot_area is calculated correctly for centimeters", {
 })
 
 test_that("plot_area is calculated correctly for meters", {
-  result <- get_plot_area(
+  result <- calc_plot_area(
     dim_x = 0.5,
     dim_y = 0.5,
     units = "m"
@@ -51,7 +51,7 @@ test_that("plot_area is calculated correctly for meters", {
 })
 
 test_that("plot_area is calculated correctly for inches", {
-  result <- get_plot_area(
+  result <- calc_plot_area(
     dim_x = 12,
     dim_y = 12,
     units = "in"
@@ -61,7 +61,7 @@ test_that("plot_area is calculated correctly for inches", {
 })
 
 test_that("plot_area is calculated correctly for feet", {
-  result <- get_plot_area(
+  result <- calc_plot_area(
     dim_x = 1,
     dim_y = 1,
     units = "ft"
