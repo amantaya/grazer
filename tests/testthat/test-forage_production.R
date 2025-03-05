@@ -69,3 +69,52 @@ test_that("plot_area is calculated correctly for feet", {
   expected <- units::set_units(1, "ft^2")
   expect_equal(result, expected)
 })
+
+test_that("forage production is calculated correctly for grams", {
+  sample_area <- calc_plot_area(
+    dim_x = 50,
+    dim_y = 50,
+    units = "cm"
+  )
+  result <- calc_forage_prod(
+    sample_wt = 100,
+    sample_units = "g",
+    sample_area = sample_area,
+    output_units = "kg/ha"
+  )
+  expected <- units::set_units(4000, "kg/hectare")
+  expect_equal(result, expected)
+})
+
+test_that("forage production is calculated correctly for lbs", {
+  sample_area <- calc_plot_area(
+    dim_x = 50,
+    dim_y = 50,
+    units = "cm"
+  )
+  result <- calc_forage_prod(
+    sample_wt = 100,
+    sample_units = "g",
+    sample_area = sample_area,
+    output_units = "lb/acre"
+  )
+  expected <- units::set_units(3568.73076, "lb/acre")
+  expect_equal(result, expected)
+})
+
+test_that("output_units must be valid", {
+  sample_area <- calc_plot_area(
+    dim_x = 50,
+    dim_y = 50,
+    units = "cm"
+  )
+  expect_error(
+    calc_forage_prod(
+      sample_wt = 100,
+      sample_units = "g",
+      sample_area = sample_area,
+      output_units = "unknown unit"
+    ),
+    "output_units must be either 'kg/ha' or 'lb/acre'."
+  )
+})
