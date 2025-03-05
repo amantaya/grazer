@@ -18,9 +18,9 @@ get_plot_area <- function(dim_x, dim_y, units) {
         stop("dim_x and dim_y must be positive.")
     }
 
-    # if (units != "cm" | units != "m" | units != "in" | units != "ft") {
-    #     stop("units must be either 'cm', 'm', 'in', or 'ft'.")
-    # }
+    if (units != "cm" & units != "m" & units != "in" & units != "ft") {
+        stop("units must be either 'cm', 'm', 'in', or 'ft'.")
+    }
 
     # length of quadrat dimension X
     dim_x <- units::set_units(dim_x, units)
