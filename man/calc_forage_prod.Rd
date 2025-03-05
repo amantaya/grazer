@@ -23,6 +23,11 @@ Calculate Forage Production
 }
 \examples{
 sample_area <- calc_plot_area(dim_x = 50, dim_y = 50, units = "cm")
-calc_forage_prod(sample_wt = 100, sample_units = "g", sample_area = sample_area, output_units = "kg/ha")
+calc_forage_prod(
+  sample_wt = 100,
+  sample_units = "g",
+  sample_area = sample_area,
+  output_units = "kg/ha"
+)
 
 }
