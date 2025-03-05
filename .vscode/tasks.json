@@ -9,7 +9,10 @@
 			"problemMatcher": [
 				"$testthat"
 			],
-			"group": "test",
+			"group": {
+				"kind": "test",
+				"isDefault": true
+			},
 			"label": "R: Test"
 		},
 		{
@@ -39,8 +42,7 @@
 			"code": [
 				"devtools::check()"
 			],
-			"problemMatcher": [
-			],
+			"problemMatcher": [],
 			"group": "build",
 			"label": "R: Check Package"
 		}
