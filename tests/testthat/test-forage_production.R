@@ -30,13 +30,42 @@ test_that("both dimensions must be provided", {
     )
 })
 
-test_that("plot_area is calculated correctly", {
-  expect_equal(
-    get_plot_area(
-      dim_x = 30,
-      dim_y = 30,
-      units = "m"
-      ),
-    900
-    )
+test_that("plot_area is calculated correctly for centimeters", {
+  result <- get_plot_area(
+    dim_x = 30,
+    dim_y = 30,
+    units = "cm"
+  )
+  expected <- units::set_units(900, "cm^2")
+  expect_equal(result, expected)
+})
+
+test_that("plot_area is calculated correctly for meters", {
+  result <- get_plot_area(
+    dim_x = 0.5,
+    dim_y = 0.5,
+    units = "m"
+  )
+  expected <- units::set_units(0.25, "m^2")
+  expect_equal(result, expected)
+})
+
+test_that("plot_area is calculated correctly for inches", {
+  result <- get_plot_area(
+    dim_x = 12,
+    dim_y = 12,
+    units = "in"
+  )
+  expected <- units::set_units(144, "in^2")
+  expect_equal(result, expected)
+})
+
+test_that("plot_area is calculated correctly for feet", {
+  result <- get_plot_area(
+    dim_x = 1,
+    dim_y = 1,
+    units = "ft"
+  )
+  expected <- units::set_units(1, "ft^2")
+  expect_equal(result, expected)
 })
