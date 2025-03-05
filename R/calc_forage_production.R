@@ -7,8 +7,8 @@
 #' @examples
 #'
 #' @export
-#' @import units
-calc_forage_production <- function(dim_x, dim_y, plot_units, output_units) {
+#' @importFrom units set_units
+get_plot_area <- function(dim_x, dim_y, plot_units) {
 
     if (missing(dim_x) | missing(dim_y)) {
         stop("You must provide both dim_x and dim_y.")
@@ -31,22 +31,5 @@ calc_forage_production <- function(dim_x, dim_y, plot_units, output_units) {
     # calculate the area of the sampling frame
     sample_area <- dim_x*dim_y
 
-    if (missing(plot_size_cm) && missing(plot_size_in)) {
-        stop("You must provide either plot_size_cm or plot_size_in.")
-    }
-
-    if (!missing(plot_size_cm) && !missing(plot_size_in)) {
-        stop("You must provide either plot_size_cm or plot_size_in, not both.")
-    }
-    if (!missing(plot_size_cm)) {
-        plot_size_in <- as_units(plot_size_cm, "cm") %>% set_units("in")
-    }
-
-    if (output_units == "kg") {
-        return(plot_size_in %>% set_units("m^2") %>% set_units("ha") %>% set_units("kg"))
-    } else if (output_units == "lb") {
-        return(plot_size_in %>% set_units("m^2") %>% set_units("ha") %>% set_units("lb"))
-    } else {
-        stop("output_units must be either 'kg' or 'lb'.")
-    }
+    return(sample_area)
 }
