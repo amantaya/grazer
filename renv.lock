@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.4.1",
+    "Version": "4.4.2",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -18,6 +18,17 @@
         "R"
       ],
       "Hash": "470851b6d5d0ac559e9d01bb352b4021"
+    },
+    "Rcpp": {
+      "Package": "Rcpp",
+      "Version": "1.0.14",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "methods",
+        "utils"
+      ],
+      "Hash": "e7bdd9ee90e96921ca8a0f1972d66682"
     },
     "askpass": {
       "Package": "askpass",
@@ -398,6 +409,17 @@
         "cpp11"
       ],
       "Hash": "f561504ec2897f4d46f0c7657e488ae1"
+    },
+    "units": {
+      "Package": "units",
+      "Version": "0.8-5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "Rcpp"
+      ],
+      "Hash": "119d19da480e873f72241ff6962ffd83"
     },
     "utf8": {
       "Package": "utf8",
