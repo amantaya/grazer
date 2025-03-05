@@ -23,13 +23,13 @@ get_plot_area <- function(dim_x, dim_y, units) {
     }
 
     # length of quadrat dimension X
-    dim_x <- units::set_units(dim_x, units)
+    dim_x_units <- units::set_units(dim_x, units, mode = "standard")
 
     # length of quadrat dimension Y
-    dim_y <- units::set_units(dim_y, units)
+    dim_y_units <- units::set_units(dim_y, units, mode = "standard")
 
     # calculate the area of the sampling frame
-    sample_area <- dim_x*dim_y
+    sample_area <- dim_x_units*dim_y_units
 
     return(sample_area)
 }
