@@ -17,4 +17,5 @@ Imports:
     lubridate,
     openssl,
     readr,
-    stringr
+    stringr,
+    units
