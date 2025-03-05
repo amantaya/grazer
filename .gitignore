@@ -20,3 +20,6 @@
 
 # pdf files
 *.pdf
+
+# Any scratch files
+*scratch*
