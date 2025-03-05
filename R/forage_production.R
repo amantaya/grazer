@@ -78,3 +78,29 @@ calc_forage_prod <- function(sample_wt, sample_units, sample_area, output_units)
     }
     return(forage_production)
 }
+
+#' Generate a Random Sample of Forage Production Data
+#'
+#' @param n The number of samples (rows) to generate.
+#'
+#' @return A data frame with random forage production data.
+#'
+#' @examples
+#' generate_forage_data(10)
+#'
+#' @export
+generate_forage_data <- function(n) {
+    synthetic_prod_data <- data.frame(
+        # the `pmax` function ensures that the values are non-negative
+        Sample_1 = pmax(rnorm(n = n, mean = 100, sd = 50), 0),
+        Sample_2 = pmax(rnorm(n = n, mean = 100, sd = 50), 0),
+        Sample_3 = pmax(rnorm(n = n, mean = 100, sd = 50), 0),
+        Sample_4 = pmax(rnorm(n = n, mean = 100, sd = 50), 0),
+        Sample_5 = pmax(rnorm(n = n, mean = 100, sd = 50), 0)
+    )
+
+    # create a new column with the mean of each row
+    synthetic_prod_data$Avg <- rowMeans(synthetic_prod_data)
+
+    return(synthetic_prod_data)
+}
