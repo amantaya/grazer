@@ -17,3 +17,22 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(grazer)
 ```
+
+# Introduction
+
+This vignette demonstrates how to calculate forage production/biomass using the `grazer` package.
+
+Forage production is the amount of forage available for grazing animals. It is usually expressed in terms of dry matter (DM) per unit area (e.g., kg/ha, lb/acre). Forage production is a key component of grazing management, as it determines the amount of forage available for grazing animals.
+
+# Calculating Forage Production
+
+First, we will load some example data to demonstrate how to calculate forage production using the `grazer` package.
+
+```{r load example data}
+file_path <- fs::path_package(
+  "extdata/example_forage_data.csv",
+  package = "grazer"
+)
+
+forage_data <- readr::read_csv(file_path)
+```
