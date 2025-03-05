@@ -19,3 +19,13 @@ test_that("plot_size units must be valid", {
     "plot_units must be either 'cm', 'm', 'in', or 'ft'."
     )
 })
+
+test_that("both dimensions must be provided", {
+  expect_error(
+    get_plot_area(
+      dim_x = 30,
+      plot_units = "cm"
+      ),
+    "You must provide both dim_x and dim_y."
+    )
+})
