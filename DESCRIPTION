@@ -12,7 +12,9 @@ RoxygenNote: 7.3.2
 Suggests:
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    fs,
+    dplyr
 Config/testthat/edition: 3
 Imports:
     here,
@@ -20,7 +22,5 @@ Imports:
     openssl,
     readr,
     stringr,
-    units,
-    fs,
-    dplyr
+    units
 VignetteBuilder: knitr
