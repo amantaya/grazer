@@ -4,9 +4,9 @@ test_that("both dimensions must be positive", {
       dim_x = -30,
       dim_y = 30,
       units = "cm"
-      ),
+    ),
     "dim_x and dim_y must be positive."
-    )
+  )
 })
 
 test_that("plot_size units must be valid", {
@@ -15,9 +15,9 @@ test_that("plot_size units must be valid", {
       dim_x = 30,
       dim_y = 30,
       units = "unknown unit"
-      ),
+    ),
     "units must be either 'cm', 'm', 'in', or 'ft'."
-    )
+  )
 })
 
 test_that("both dimensions must be provided", {

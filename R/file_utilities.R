@@ -11,11 +11,11 @@
 #'
 #' @export
 generate_sha256_hash <- function(file_path) {
-    con <- file(file_path, "rb")
-    file_hash <- openssl::sha256(con)
-    close(con)
-    file_hash <- as.character(file_hash)
-    return(file_hash)
+  con <- file(file_path, "rb")
+  file_hash <- openssl::sha256(con)
+  close(con)
+  file_hash <- as.character(file_hash)
+  return(file_hash)
 }
 
 #' Generate md5 hash for a file
@@ -32,11 +32,11 @@ generate_sha256_hash <- function(file_path) {
 #' @export
 # function to open the file and create a md5 hash
 generate_md5_hash <- function(file_path) {
-    con <- file(file_path, "rb")
-    file_hash <- openssl::md5(con)
-    file_hash <- as.character(file_hash)
-    close(con)
-    return(file_hash)
+  con <- file(file_path, "rb")
+  file_hash <- openssl::md5(con)
+  file_hash <- as.character(file_hash)
+  close(con)
+  return(file_hash)
 }
 
 #' @title strict_read_csv
@@ -53,12 +53,12 @@ generate_md5_hash <- function(file_path) {
 #' }
 #' @export
 strict_read_csv <-
-    function(data) {
-      readr::read_csv(
-        data,
-        col_types = get_prelim_col_spec()
-        )
-    }
+  function(data) {
+    readr::read_csv(
+      data,
+      col_types = get_prelim_col_spec()
+    )
+  }
 
 #' @title compare_file_hashes
 #'
@@ -82,11 +82,11 @@ strict_read_csv <-
 #'
 #' @export
 compare_file_hashes <- function(old_file, new_file) {
-    old_file_hash <- generate_sha256_hash(old_file)
-    new_file_hash <- generate_sha256_hash(new_file)
+  old_file_hash <- generate_sha256_hash(old_file)
+  new_file_hash <- generate_sha256_hash(new_file)
 
-    if (old_file_hash != new_file_hash) {
-        warning("The file hashes do not match.")
-    }
-    return(old_file_hash == new_file_hash)
+  if (old_file_hash != new_file_hash) {
+    warning("The file hashes do not match.")
+  }
+  return(old_file_hash == new_file_hash)
 }

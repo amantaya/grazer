@@ -30,4 +30,3 @@ test_that("create_prelim_col_spec returns correct column specifications", {
 
 # TODO - create a test for get_prelim_col_spec
 # test_that("get_prelim_col_spec returns correct column specifications", {
-

@@ -13,10 +13,10 @@
 #'
 #' @export
 validate_eid_length <- function(eid) {
-    if (is.na(eid)) {
-        return(FALSE)
-    }
-    return(nchar(eid) == 15)
+  if (is.na(eid)) {
+    return(FALSE)
+  }
+  return(nchar(eid) == 15)
 }
 
 #' @title Validate EID Prefix
@@ -33,21 +33,21 @@ validate_eid_length <- function(eid) {
 #' validate_eid_prefix(invalid_eid) # returns FALSE
 #' @export
 validate_eid_prefix <- function(eid) {
-    if (is.na(eid)) {
-        return(FALSE)
-    }
+  if (is.na(eid)) {
+    return(FALSE)
+  }
 
-    first_three_digits <- substr(eid, 1, 3)
+  first_three_digits <- substr(eid, 1, 3)
 
-    # NOTE: this is not a complete list of acceptable prefixes
-    accepatble_prefixes <- c(
-        "840", # USA Country Code - USDA AIN Complaint
-        "982", # Allflex
-        "985", # Destron Fearing
-        "942", # Zee Tags
-        "949" # Y-Tex
-    )
-    return(first_three_digits %in% accepatble_prefixes)
+  # NOTE: this is not a complete list of acceptable prefixes
+  accepatble_prefixes <- c(
+    "840", # USA Country Code - USDA AIN Complaint
+    "982", # Allflex
+    "985", # Destron Fearing
+    "942", # Zee Tags
+    "949" # Y-Tex
+  )
+  return(first_three_digits %in% accepatble_prefixes)
 }
 
 #' @title Get Length of EID
@@ -63,8 +63,8 @@ validate_eid_prefix <- function(eid) {
 #' @export
 #' @importFrom stringr str_length
 get_eid_length <- function(eid) {
-    return(stringr::str_length(eid))
-    }
+  return(stringr::str_length(eid))
+}
 
 #' @title Get the Manufacturer or Type of an EID
 #'
@@ -81,24 +81,24 @@ get_eid_length <- function(eid) {
 #' get_eid_type(NA) # returns NA_character_
 #' @export
 get_eid_type <- function(eid) {
-    if (is.na(eid)) {
-        return(NA_character_)
-    }
-    first_three_digits <- substr(eid, 1, 3)
-    # NOTE: this is not a complete list of manufacturers
-    if (first_three_digits == "840") {
-        return("USDA Animal Identification Number")
-    } else if (first_three_digits == "982") {
-        return("Allflex")
-    } else if (first_three_digits == "985") {
-        return("Destron Fearing")
-    } else if (first_three_digits == "942") {
-        return("Zee Tags")
-    } else if (first_three_digits == "949") {
-        return("Y-Tex")
-    } else {
-        return(NA_character_)
-    }
+  if (is.na(eid)) {
+    return(NA_character_)
+  }
+  first_three_digits <- substr(eid, 1, 3)
+  # NOTE: this is not a complete list of manufacturers
+  if (first_three_digits == "840") {
+    return("USDA Animal Identification Number")
+  } else if (first_three_digits == "982") {
+    return("Allflex")
+  } else if (first_three_digits == "985") {
+    return("Destron Fearing")
+  } else if (first_three_digits == "942") {
+    return("Zee Tags")
+  } else if (first_three_digits == "949") {
+    return("Y-Tex")
+  } else {
+    return(NA_character_)
+  }
 }
 
 #' @title Get the Prefix of an EID
@@ -114,8 +114,8 @@ get_eid_type <- function(eid) {
 #'
 #' @export
 get_eid_prefix <- function(eid) {
-    if (is.na(eid)) {
-        return(NA_character_)
-    }
-    return(substr(eid, 1, 3))
+  if (is.na(eid)) {
+    return(NA_character_)
+  }
+  return(substr(eid, 1, 3))
 }
