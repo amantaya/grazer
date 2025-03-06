@@ -82,6 +82,8 @@ get_prelim_col_spec <- function(none) {
 #'
 #' @export
 #'
+# TODO - refactor the function name to be get_greenfeed_schema() and have a type argument
+# that specifies the type of greenfeed data schema to get
 get_prelim_greenfeed_schema <- function(none) {
   prelim_gf_schema <- readr::read_csv(
     system.file(
