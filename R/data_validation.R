@@ -119,3 +119,5 @@ get_eid_prefix <- function(eid) {
     }
     return(substr(eid, 1, 3))
 }
+
+# TODO - function to check for invalid dates in a column
