@@ -25,9 +25,19 @@ test_that("both dimensions must be provided", {
     calc_plot_area(
       dim_x = 30,
       units = "cm"
-      ),
+    ),
     "You must provide both dim_x and dim_y."
-    )
+  )
+})
+
+test_that("plot_area is calculated correctly for rectangular plots", {
+  result <- calc_plot_area(
+    dim_x = 30,
+    dim_y = 50,
+    units = "cm"
+  )
+  expected <- units::set_units(1500, "cm^2")
+  expect_equal(result, expected)
 })
 
 test_that("plot_area is calculated correctly for centimeters", {
