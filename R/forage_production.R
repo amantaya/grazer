@@ -12,15 +12,15 @@
 #' @export
 #' @importFrom units set_units
 calc_plot_area <- function(dim_x, dim_y, units) {
-  if (missing(dim_x) | missing(dim_y)) {
+  if (missing(dim_x) || missing(dim_y)) {
     stop("You must provide both dim_x and dim_y.")
   }
 
-  if (dim_x <= 0 | dim_y <= 0) {
+  if (dim_x <= 0 || dim_y <= 0) {
     stop("dim_x and dim_y must be positive.")
   }
 
-  if (units != "cm" & units != "m" & units != "in" & units != "ft") {
+  if (units != "cm" && units != "m" && units != "in" && units != "ft") {
     stop("units must be either 'cm', 'm', 'in', or 'ft'.")
   }
 
@@ -33,17 +33,20 @@ calc_plot_area <- function(dim_x, dim_y, units) {
   # calculate the area of the sampling frame
   sample_area <- dim_x_units * dim_y_units
 
-  return(sample_area)
+  sample_area
 }
 
 #' Calculate Forage Production
 #'
 #' @param sample_wt The weight of the forage sample.
 #' @param sample_units The units of the forage sample weight.
-#' @param sample_area The area of the sampling frame. Most likely calculated using \code{\link{calc_plot_area}}.
-#' @param output_units The units to return the forage production in. Either 'kg/ha' or 'lb/acre'.
+#' @param sample_area The area of the sampling frame.
+#' Most likely calculated using \code{\link{calc_plot_area}}.
+#' @param output_units The units to return the forage production in.
+#' Either 'kg/ha' or 'lb/acre'.
 #'
-#' @return The forage production in the units provided, either 'kg/ha' or 'lb/acre'.
+#' @return The forage production in the units provided.
+#' Either 'kg/ha' or 'lb/acre'.
 #'
 #' @examples
 #' sample_area <- calc_plot_area(
@@ -60,7 +63,12 @@ calc_plot_area <- function(dim_x, dim_y, units) {
 #'
 #' @export
 #' @importFrom units set_units
-calc_forage_prod <- function(sample_wt, sample_units, sample_area, output_units) {
+calc_forage_prod <- function(
+  sample_wt,
+  sample_units,
+  sample_area,
+  output_units
+  ) {
   sample_wt <- units::set_units(sample_wt, sample_units, mode = "standard")
 
   sample_area_m2 <- units::set_units(sample_area, "m^2")
@@ -74,7 +82,7 @@ calc_forage_prod <- function(sample_wt, sample_units, sample_area, output_units)
   } else {
     stop("output_units must be either 'kg/ha' or 'lb/acre'.")
   }
-  return(forage_production)
+  forage_production
 }
 
 #' Generate a Random Sample of Forage Production Data
