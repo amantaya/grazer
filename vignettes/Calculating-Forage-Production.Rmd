@@ -48,7 +48,7 @@ file_path <- fs::path_package(
 forage_data <- readr::read_csv(file_path)
 ```
 
-Each row represents a different pasture, and the columns (e.g., Sample_1, Sample_2) represents the weight of clipped and dried forage (in grams) within the sampling frame at multiple sample sites within the same pasture.
+Each row represents a different pasture, and the columns (e.g., Sample_1, Sample_2) represents the weight of clipped and dried forage (in grams) within the sampling frame at multiple sampling sites within the same pasture.
 
 ```{r head of forage data}
 head(forage_data)
