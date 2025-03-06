@@ -75,6 +75,18 @@
 				"isDefault": false
 			},
 			"problemMatcher": []
+		},
+		{
+			"label": "R: Lint R Package",
+			"type": "R",
+			"code": [
+				"lintr::lint_package()"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"problemMatcher": []
 		}
 	]
 }
