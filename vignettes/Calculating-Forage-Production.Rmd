@@ -85,11 +85,58 @@ Finally, we can calculate the forage production per unit area (kg/ha) for each p
 
 Note that we chose our output units to be "kg/ha" in this example. You can choose other units such as "lb/acre" by changing the `units` argument in the `calc_forage_prod` function.
 
-```{r calculate forage production}
+```{r calculate forage production kg/ha}
 forage_production <- grazer::calc_forage_prod(
   sample_wt = forage_data$Avg,
   sample_units = "g",
   sample_area = sample_area,
-  units = "kg/ha"
+  output_units = "kg/ha"
 )
+head(forage_production)
 ```
+
+```{r calculate forage production lb/acre}
+forage_production <- grazer::calc_forage_prod(
+  sample_wt = forage_data$Avg,
+  sample_units = "g",
+  sample_area = sample_area,
+  output_units = "lb/acre"
+)
+head(forage_production)
+```
+
+Alternatively, we can use the `dplyr` package to create a new column in the `forage_data` data frame that contains the forage production per unit area (kg/ha) for each pasture.
+
+```{r calculate forage production using dplyr}
+forage_production <- dplyr::mutate(
+  forage_data,
+  kg_ha = grazer::calc_forage_prod(
+    sample_wt = Avg,
+    sample_units = "g",
+    sample_area = sample_area,
+    output_units = "kg/ha"
+  )
+)
+head(forage_production)
+```
+
+Here's the same calculation, but with the output units set to "lb/acre".
+
+```{r calculate forage production in lb/acre}
+forage_production <- dplyr::mutate(
+  forage_data,
+  lb_acre = grazer::calc_forage_prod(
+    sample_wt = Avg,
+    sample_units = "g",
+    sample_area = sample_area,
+    output_units = "lb/acre"
+  )
+)
+head(forage_production)
+```
+
+# Conclusion
+
+The `grazer` package provides a convenient way to calculate forage production per unit area using data collected from sampling frames. This information is essential for grazing management, as it helps determine the amount of forage available for grazing animals.
+
+I hope this vignette has been helpful in demonstrating how to calculate forage production using the `grazer` package. If you have any questions or feedback, please feel free to reach out to the package authors/maintainers.
