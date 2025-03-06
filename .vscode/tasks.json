@@ -9,10 +9,7 @@
 			"problemMatcher": [
 				"$testthat"
 			],
-			"group": {
-				"kind": "test",
-				"isDefault": true
-			},
+			"group": "build",
 			"label": "R: Test"
 		},
 		{
@@ -45,6 +42,27 @@
 			"problemMatcher": [],
 			"group": "build",
 			"label": "R: Check Package"
-		}
+		},
+		{
+			"type": "R",
+			"code": [
+				"devtools::build()"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [],
+			"label": "R: Build"
+		},
+		{
+			"type": "R",
+			"code": [
+				"devtools::install(build_vignettes = TRUE)"
+			],
+			"problemMatcher": [],
+			"group": "build",
+			"label": "R: Install Package and Build Vignettes"
+		},
 	]
 }
