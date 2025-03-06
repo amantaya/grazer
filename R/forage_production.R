@@ -89,14 +89,15 @@ calc_forage_prod <- function(sample_wt, sample_units, sample_area, output_units)
 #' generate_forage_data(10)
 #'
 #' @export
-generate_forage_data <- function(n) {
+generate_forage_data <- function(n_rows) {
+    # add a function parameter specify the number of samples (columns) to generate
     synthetic_prod_data <- data.frame(
         # the `pmax` function ensures that the values are non-negative
-        Sample_1 = pmax(rnorm(n = n, mean = 100, sd = 50), 0),
-        Sample_2 = pmax(rnorm(n = n, mean = 100, sd = 50), 0),
-        Sample_3 = pmax(rnorm(n = n, mean = 100, sd = 50), 0),
-        Sample_4 = pmax(rnorm(n = n, mean = 100, sd = 50), 0),
-        Sample_5 = pmax(rnorm(n = n, mean = 100, sd = 50), 0)
+        Sample_1 = pmax(rnorm(n = n_rows, mean = 100, sd = 50), 0),
+        Sample_2 = pmax(rnorm(n = n_rows, mean = 100, sd = 50), 0),
+        Sample_3 = pmax(rnorm(n = n_rows, mean = 100, sd = 50), 0),
+        Sample_4 = pmax(rnorm(n = n_rows, mean = 100, sd = 50), 0),
+        Sample_5 = pmax(rnorm(n = n_rows, mean = 100, sd = 50), 0)
     )
     return(synthetic_prod_data)
 }
