@@ -4,7 +4,8 @@
 /.Renviron
 
 # renv package management
-/renv
+/renv/staging
+/renv/library
 
 # R project files
 .Rproj.user
