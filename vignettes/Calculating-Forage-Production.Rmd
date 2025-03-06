@@ -20,7 +20,7 @@ This vignette demonstrates how to calculate forage production/biomass using the 
 
 Forage production is the amount of forage available for grazing animals. It is usually expressed in terms of dry matter (DM) per unit area (e.g., kg/ha, lb/acre). Forage production is a key component of grazing management, as it determines the amount of forage available for grazing animals.
 
-Forage production data is usually collected using a quadrat or a sampling frame. A quadrat is a square or rectangular frame that is placed on the ground to sample vegetation. The size of the quadrat may vary depending on the study design and the vegetation type. **Note that we do not currently support the use of circular sampling frames, sometimes called "hoops".**
+Forage production data is usually collected using a quadrat or a sampling frame. A quadrat is a square or rectangular frame that is placed on the ground to sample vegetation. The size of the quadrat may vary depending on the study design and the vegetation type.
 
 Vegetation is clipped from within the sampling frame, dried, and weighed to determine the dry matter (DM) production per unit area.
 
@@ -28,9 +28,9 @@ The forage production is then calculated by averaging the dry matter production 
 
 ## Calculating Forage Production
 
-First, we will load some example data to demonstrate how to calculate forage production using the `grazer` package.
+We will load some example data to demonstrate how to calculate forage production using the `grazer` package.
 
-Load the required packages.
+First we need to load the required packages.
 
 ```{r setup}
 library(grazer)
@@ -39,7 +39,7 @@ library(fs)
 library(readr)
 ```
 
-And load the example forage data.
+And then we can load the example forage data.
 
 ```{r load example data}
 file_path <- fs::path_package(
@@ -50,7 +50,7 @@ file_path <- fs::path_package(
 forage_data <- readr::read_csv(file_path)
 ```
 
-Each row within the example data represents a different pasture, and the columns (e.g., Sample_1, Sample_2) represents the weight of clipped and dried forage (in grams) within the sampling frame at multiple sampling sites within the same pasture.
+Each row within the example data represents a different pasture, and the columns (e.g., Sample_1, Sample_2) represent the weight of clipped and dried forage (in grams) within the sampling frame at multiple sampling sites within the same pasture.
 
 ```{r head of forage data}
 head(forage_data)
@@ -58,7 +58,11 @@ head(forage_data)
 
 ## Calculating Sampling Frame Area
 
-The area covered by a sampling frame is not recorded in the data, so we need to specify the dimensions of the sampling frame to calculate the area covered by the sampling frame. In this example, we will assume that the sampling frame is 50 cm x 50 cm (0.25 m^2).
+Before we can calculate forage production, we need to determine the area covered by the sampling frame. Sampling frames are usually square or rectangular in shape, and the dimensions of the sampling frame are needed to calculate the area covered by the sampling frame. The `calc_plot_area` function is a convenient way to calculate the area covered by the sampling frame.
+
+**Note that `grazer` currently does not support the use of circular sampling frames, sometimes called "hoops".**
+
+The area covered by a sampling frame is not recorded in the data, so we need to specify the dimensions of the sampling frame. In this example, we will assume that the sampling frame is 50 cm x 50 cm (0.25 m^2).
 
 ```{r calculate plot area}
 sample_area <- grazer::calc_plot_area(
