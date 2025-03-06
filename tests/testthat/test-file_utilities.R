@@ -1,6 +1,6 @@
 test_that("file sha256 hash is correct", {
   temp_file <- tempfile(fileext = ".txt")
-  writeLines("Hello, world!", temp_file)
+  writeLines("Hello, world!", temp_file, sep = "\n")
   sha256_hash <- generate_sha256_hash(temp_file)
   sha256_hash <- as.character(sha256_hash)
   unlink(temp_file)
@@ -12,7 +12,7 @@ test_that("file sha256 hash is correct", {
 
 test_that("file md5 hash is correct", {
   temp_file <- tempfile(fileext = ".txt")
-  writeLines("Hello, world!", temp_file)
+  writeLines("Hello, world!", temp_file, sep = "\n")
   md5_hash <- generate_md5_hash(temp_file)
   md5_hash <- as.character(md5_hash)
   unlink(temp_file)
