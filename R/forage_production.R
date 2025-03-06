@@ -64,11 +64,10 @@ calc_plot_area <- function(dim_x, dim_y, units) {
 #' @export
 #' @importFrom units set_units
 calc_forage_prod <- function(
-  sample_wt,
-  sample_units,
-  sample_area,
-  output_units
-  ) {
+    sample_wt,
+    sample_units,
+    sample_area,
+    output_units) {
   sample_wt <- units::set_units(sample_wt, sample_units, mode = "standard")
 
   sample_area_m2 <- units::set_units(sample_area, "m^2")
