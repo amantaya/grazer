@@ -2,7 +2,7 @@
 title: "Calculating Forage Production"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Calculating Forage Production/Biomass}
+  %\VignetteIndexEntry{Calculating forage production}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Introduction
+## Introduction
 
 This vignette demonstrates how to calculate forage production/biomass using the `grazer` package.
 
@@ -26,7 +26,7 @@ Vegetation is clipped from within the sampling frame, dried, and weighed to dete
 
 The forage production is then calculated by averaging the dry matter production from all sampling locations within a pasture and then scaling it to the desired unit (e.g., kg/ha, lb/acre).
 
-# Calculating Forage Production
+## Calculating Forage Production
 
 First, we will load some example data to demonstrate how to calculate forage production using the `grazer` package.
 
@@ -142,7 +142,7 @@ forage_production <- dplyr::mutate(
 head(forage_production)
 ```
 
-# Conclusion
+## Conclusion
 
 The `grazer` package provides a convenient way to calculate forage production per unit area using data collected from sampling frames. This information is essential for grazing management, as it helps determine the amount of forage available for grazing animals.
 
