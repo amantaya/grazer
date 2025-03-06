@@ -27,13 +27,17 @@ This vignette demonstrates how to calculate forage production/biomass using the 
 
 Forage production is the amount of forage available for grazing animals. It is usually expressed in terms of dry matter (DM) per unit area (e.g., kg/ha, lb/acre). Forage production is a key component of grazing management, as it determines the amount of forage available for grazing animals.
 
+Forage production data is usually collected using a quadrat or a sampling frame. A quadrat is a square or rectangular frame that is placed on the ground to sample vegetation. The size of the quadrat may vary depending on the study design and the vegetation type. **Note that we do not currently support the use of circular sampling frames, sometimes called "hoops".**
+
+Vegetation is clipped from within the sampling frame, dried, and weighed to determine the dry matter (DM) production per unit area.
+
+The forage production is then calculated by averaging the dry matter production from all sampling locations within a pasture and then scaling it to the desired unit (e.g., kg/ha, lb/acre).
+
 # Calculating Forage Production
 
 First, we will load some example data to demonstrate how to calculate forage production using the `grazer` package.
 
-The example data contains information on forage production within a given sampling frame at different sampling locations within a pasture. Each represents a different pasture, and the columns (e.g., Sample_1, Sample_2) represent the forage production (in grams) at each sampling location.
-
-The example data also contains an `Avg` column that represents the average forage production across all sampling locations within each pasture.
+The example data contains information on forage production within a given sampling frame at different sampling locations within a pasture. Each row represents a different pasture, and the columns (e.g., Sample_1, Sample_2) represents the forage production (in grams) within the sampling frame at multiple sample sites within a pasture..
 
 ```{r load example data}
 file_path <- fs::path_package(
@@ -48,11 +52,7 @@ forage_data <- readr::read_csv(file_path)
 head(forage_data)
 ```
 
-Forage production data is usually collected using a quadrat or a sampling frame. A quadrat is a square or rectangular frame that is placed on the ground to sample vegetation. The size of the quadrat may vary depending on the study design and the vegetation type. In this example, we will assume that the sampling frame is 50 cm x 50 cm (0.25 m^2). **Note that we do not currently support the use of circular sampling frames, sometimes called "hoops".**
-
-Vegetation is clipped from within the sampling frame, dried, and weighed to determine the dry matter (DM) production per unit area.
-
-The forage production is then calculated by averaging the dry matter production from all sampling locations within a pasture and then scaling it to the desired unit (e.g., kg/ha, lb/acre).
+The area covered by a sampling frame is not typically recorded in the data, so we need to specify the dimensions of the sampling frame to calculate the area covered by the sampling frame. In this example, we will assume that the sampling frame is 50 cm x 50 cm (0.25 m^2).
 
 ```{r calculate plot area}
 sample_area <- grazer::calc_plot_area(
