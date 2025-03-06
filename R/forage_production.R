@@ -98,9 +98,5 @@ generate_forage_data <- function(n) {
         Sample_4 = pmax(rnorm(n = n, mean = 100, sd = 50), 0),
         Sample_5 = pmax(rnorm(n = n, mean = 100, sd = 50), 0)
     )
-
-    # create a new column with the mean of each row
-    synthetic_prod_data$Avg <- rowMeans(synthetic_prod_data)
-
     return(synthetic_prod_data)
 }
