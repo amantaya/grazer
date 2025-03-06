@@ -62,5 +62,34 @@ sample_area <- grazer::calc_plot_area(
 )
 ```
 
+Next, we will calculate the forage production per unit area (kg/ha) for each pasture by averaging the forage production across all sampling locations within each pasture and scaling it to the desired unit.
 
+First, we need to calculate an average forage production value for each pasture. The average forage production is calculated by taking the mean of the forage production values from all sampling locations within a pasture.
 
+```{r calculate average forage production using base R}
+forage_data$Avg <- rowMeans(forage_data[, ], na.rm = TRUE)
+
+head(forage_data)
+```
+
+Alternatively, you can use `dplyr` to calculate the average forage production value for each pasture if you prefer the dplyr syntax.
+
+```{r calculate average forage production using dplyr}
+forage_data <- dplyr::mutate(
+  forage_data,
+  Avg = rowMeans(across(starts_with("Sample")), na.rm = TRUE)
+)
+```
+
+Finally, we can calculate the forage production per unit area (kg/ha) for each pasture using the `calc_forage_prod` function from the `grazer` package.
+
+Note that we chose our output units to be "kg/ha" in this example. You can choose other units such as "lb/acre" by changing the `units` argument in the `calc_forage_prod` function.
+
+```{r calculate forage production}
+forage_production <- grazer::calc_forage_prod(
+  sample_wt = forage_data$Avg,
+  sample_units = "g",
+  sample_area = sample_area,
+  units = "kg/ha"
+)
+```
