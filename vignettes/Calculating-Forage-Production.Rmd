@@ -1,5 +1,5 @@
 ---
-title: "Calculating-Forage-Production"
+title: "Calculating Forage Production"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Calculating-Forage-Production}
@@ -37,7 +37,7 @@ The forage production is then calculated by averaging the dry matter production 
 
 First, we will load some example data to demonstrate how to calculate forage production using the `grazer` package.
 
-The example data contains information on forage production within a given sampling frame at different sampling locations within a pasture. Each row represents a different pasture, and the columns (e.g., Sample_1, Sample_2) represents the forage production (in grams) within the sampling frame at multiple sample sites within a pasture..
+The example data contains information on forage production within a given sampling frame at different sampling locations within a pasture. Each row represents a different pasture, and the columns (e.g., Sample_1, Sample_2) represents the weight of clipped and dried forage (in grams) within the sampling frame at multiple sample sites within the same pasture.
 
 ```{r load example data}
 file_path <- fs::path_package(
