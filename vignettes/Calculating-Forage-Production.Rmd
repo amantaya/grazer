@@ -64,6 +64,8 @@ Before we can calculate forage production, we need to determine the area covered
 
 The area covered by a sampling frame is not recorded in the data, so we need to specify the dimensions of the sampling frame. In this example, we will assume that the sampling frame is 50 cm x 50 cm (0.25 m^2).
 
+You can also specify the units of the dimensions (e.g., "cm", "m", "in", "ft"). The `calc_plot_area` function will return the area covered by the sampling frame in the original units squared.
+
 ```{r calculate plot area}
 sample_area <- grazer::calc_plot_area(
   dim_x = 50,
