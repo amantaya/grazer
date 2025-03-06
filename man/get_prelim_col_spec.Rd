@@ -8,7 +8,7 @@ get_prelim_col_spec(none)
 }
 \arguments{
 \item{none}{A placeholder for the function to work with the
-get_prelim_data_schema function in the roxygen2 documentation.}
+get_prelim_greenfeed_schema function in the roxygen2 documentation.}
 }
 \value{
 A readr column specification for the

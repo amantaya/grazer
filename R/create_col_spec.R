@@ -39,7 +39,7 @@ create_prelim_col_spec <- function(none) {
 #' Get the preliminary greenfeed data column specification from an RDS file
 #'
 #' @param none A placeholder for the function to work with the
-#' get_prelim_data_schema function in the roxygen2 documentation.
+#' get_prelim_greenfeed_schema function in the roxygen2 documentation.
 #'
 #' @return A readr column specification for the
 #' preliminary greenfeed data where each column is parsed
@@ -68,7 +68,7 @@ get_prelim_col_spec <- function(none) {
 #' Get the preliminary greenfeed data schema from a CSV file
 #'
 #' @param none A placeholder for the function to work with the
-#' get_prelim_data_schema function in the roxygen2 documentation.
+#' get_prelim_greenfeed_schema function in the roxygen2 documentation.
 #'
 #' @return A tibble with the standardized column names
 #' for preliminary greenfeed data that has been read
@@ -77,12 +77,12 @@ get_prelim_col_spec <- function(none) {
 #'
 #' @examples
 #' \dontrun{
-#' get_prelim_data_schema()
+#' get_prelim_greenfeed_schema()
 #' }
 #'
 #' @export
 #'
-get_prelim_data_schema <- function(none) {
+get_prelim_greenfeed_schema <- function(none) {
   prelim_gf_schema <- readr::read_csv(
     system.file(
       "extdata",
