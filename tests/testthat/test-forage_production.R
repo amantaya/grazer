@@ -129,7 +129,7 @@ test_that("output_units must be valid", {
   )
 })
 
-test_that("forage production is calculated correctly when sample_units are ounces", {
+test_that("forage production is calculated correctly when sample_units are ounces", { # nolint: line_length_linter
   sample_area <- calc_plot_area(
     dim_x = 50,
     dim_y = 50,
@@ -145,7 +145,7 @@ test_that("forage production is calculated correctly when sample_units are ounce
   expect_equal(result, expected, tolerance = 0.01)
 })
 
-test_that("forage production is calculated correctly when sample_units are pounds", {
+test_that("forage production is calculated correctly when sample_units are pounds", { # nolint: line_length_linter
   sample_area <- calc_plot_area(
     dim_x = 50,
     dim_y = 50,
@@ -182,7 +182,7 @@ test_that("generate_forage_data generates non-negative values", {
   expect_true(all(data >= 0))
 })
 
-test_that("generate_forage_data generates different values on subsequent calls with different seeds", {
+test_that("generate_forage_data generates different values with different seeds", { # nolint: line_length_linter
   set.seed(123) # Set seed for reproducibility
 
   data1 <- generate_forage_data(n_rows = 10)
@@ -194,7 +194,7 @@ test_that("generate_forage_data generates different values on subsequent calls w
   expect_false(identical(data1, data2))
 })
 
-test_that("generate_forage_data generates the same values on subsequent calls with the same seed", {
+test_that("generate_forage_data generates the same values with the same seed", {
   set.seed(123) # Set seed for reproducibility
 
   data1 <- generate_forage_data(n_rows = 10)

@@ -45,7 +45,7 @@ test_that("sha256 hash of preliminary greenfeed data schema is correct", {
   )
   actual_sha256hash <- generate_sha256_hash(path)
   actual_sha256hash <- as.character(actual_sha256hash)
-  expected_sha256hash <- "454f3eea52d6a6e935825f2e0a6614825b02d454c6038e29206d6845dbf44c36"
+  expected_sha256hash <- "454f3eea52d6a6e935825f2e0a6614825b02d454c6038e29206d6845dbf44c36" # nolint: line_length_linter
   expect_equal(
     actual_sha256hash,
     expected_sha256hash
@@ -98,7 +98,7 @@ test_that("when old csv file and new csv file are equal return the same hash", {
   expect_equal(compare_file_hashes(old_file, new_file), TRUE)
 })
 
-test_that("when old csv file and new csv file are not equal return different hashes", {
+test_that("when old csv file and new csv file are not equal return different hashes", { # nolint: line_length_linter
   old_file <- tempfile(fileext = ".csv")
   write.csv(
     data.frame(
@@ -117,7 +117,9 @@ test_that("when old csv file and new csv file are not equal return different has
     ),
     new_file
   )
-  expect_warning(compare_file_hashes(old_file, new_file), "The file hashes do not match.")
+  expect_warning(
+    compare_file_hashes(old_file, new_file), "The file hashes do not match."
+  )
   expect_equal(suppressWarnings(compare_file_hashes(old_file, new_file)), FALSE)
 })
 
@@ -134,6 +136,8 @@ test_that("old text file and new text file are not equal", {
   writeLines("Hello, world!", old_file)
   new_file <- tempfile(fileext = ".txt")
   writeLines("Goodbye, world!", new_file)
-  expect_warning(compare_file_hashes(old_file, new_file), "The file hashes do not match.")
+  expect_warning(
+    compare_file_hashes(old_file, new_file), "The file hashes do not match."
+  )
   expect_equal(suppressWarnings(compare_file_hashes(old_file, new_file)), FALSE)
 })
