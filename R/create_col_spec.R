@@ -34,7 +34,7 @@ create_prelim_col_spec <- function(none) {
     IsPreliminary = readr::col_logical(),
     RunTime = readr::col_datetime(format = "%Y-%m-%d %H:%M:%S")
   )
-  # TODO - save the column specification to a file
+  create_prelim_col_spec
 }
 
 #' Get the preliminary greenfeed data column specification from an RDS file
