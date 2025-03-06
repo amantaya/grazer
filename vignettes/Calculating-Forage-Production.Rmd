@@ -50,7 +50,7 @@ file_path <- fs::path_package(
 forage_data <- readr::read_csv(file_path)
 ```
 
-Each row within the example data represents a different pasture, and the columns (e.g., Sample_1, Sample_2) represent the weight (in grams) of clipped and dried forage  within the sampling frame at multiple sampling sites within the same pasture.
+Each row within the example data represents a different pasture, and the columns (e.g., Sample_1, Sample_2) represent the weight (in grams) of clipped and dried forage within the sampling frame at multiple sampling sites within the same pasture.
 
 ```{r head of forage data}
 head(forage_data)
@@ -58,13 +58,13 @@ head(forage_data)
 
 ## Calculating Sampling Frame Area
 
-Before we can calculate forage production, we need to determine the area covered by the sampling frame. Sampling frames are usually square or rectangular in shape, and the dimensions of the sampling frame are needed to calculate the area covered by the sampling frame. The `calc_plot_area` function is a convenient way to calculate the area covered by the sampling frame.
+Before we can calculate forage production, we need to determine the area covered by the sampling frame. Sampling frames are usually square or rectangular in shape, and the dimensions of the sampling frame are needed to calculate the area covered by the sampling frame. The `calc_plot_area()` function is a convenient way to calculate the area covered by the sampling frame.
 
 **Note that `grazer` currently does not support the use of circular sampling frames, sometimes called "hoops".**
 
 The area covered by a sampling frame is not recorded in the data, so we need to specify the dimensions of the sampling frame. In this example, we will assume that the sampling frame is 50 cm x 50 cm (0.25 m^2).
 
-You can also specify the units of the dimensions (e.g., "cm", "m", "in", "ft") by changing the `units` argument. The `calc_plot_area` function will return the area covered by the sampling frame in the original units squared.
+You can also specify the units of the dimensions (e.g., "cm", "m", "in", "ft") by changing the `units` argument. The `calc_plot_area()` function will return the area covered by the sampling frame in the original units squared.
 
 ```{r calculate plot area}
 sample_area <- grazer::calc_plot_area(
@@ -95,7 +95,7 @@ forage_data <- dplyr::mutate(
 head(forage_data)
 ```
 
-Finally, we can calculate the forage production per unit area (e.g., kg/ha, lb/acre) for each pasture using the `calc_forage_prod()` function. This function scales the average sample weight to the desired unit (e.g., kg/ha, lb/acre) based on the area covered by the sampling frame.
+Now that the sample weights have been averaged, we can calculate the forage production per unit area for each pasture using the `calc_forage_prod()` function. This function scales the average sample weight to the desired unit (e.g., kg/ha, lb/acre) based on the area covered by the sampling frame.
 
 The `sample_area` object is the area covered by the sampling frame, which we calculated earlier using `calc_plot_area()` function.
 
