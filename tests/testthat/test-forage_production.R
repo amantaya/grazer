@@ -152,6 +152,7 @@ test_that("forage production is calculated correctly when sample_units are pound
 })
 
 test_that("generate_forage_data generates correct number of rows and columns", {
+  set.seed(123) # Set seed for reproducibility
   n <- 10
   data <- generate_forage_data(n)
 
@@ -163,6 +164,7 @@ test_that("generate_forage_data generates correct number of rows and columns", {
 })
 
 test_that("generate_forage_data generates non-negative values", {
+  set.seed(123) # Set seed for reproducibility
   n <- 10
   data <- generate_forage_data(n)
 
@@ -170,11 +172,26 @@ test_that("generate_forage_data generates non-negative values", {
   expect_true(all(data >= 0))
 })
 
-test_that("generate_forage_data generates different values on subsequent calls", {
+test_that("generate_forage_data generates different values on subsequent calls with different seeds", {
+  set.seed(123) # Set seed for reproducibility
   n <- 10
   data1 <- generate_forage_data(n)
+
+  set.seed(456) # Set a different seed for the second call
   data2 <- generate_forage_data(n)
 
   # Check that the generated data frames are not identical
   expect_false(identical(data1, data2))
+})
+
+test_that("generate_forage_data generates the same values on subsequent calls with the same seed", {
+  set.seed(123) # Set seed for reproducibility
+  n <- 10
+  data1 <- generate_forage_data(n)
+
+  set.seed(123) # Set a different seed for the second call
+  data2 <- generate_forage_data(n)
+
+  # Check that the generated data frames are not identical
+  expect_true(identical(data1, data2))
 })
