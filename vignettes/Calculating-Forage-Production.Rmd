@@ -2,7 +2,7 @@
 title: "Calculating Forage Production"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Calculating-Forage-Production}
+  %\VignetteIndexEntry{Calculating Forage Production/Biomass}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -12,13 +12,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-```
-
-```{r setup}
-library(grazer)
-library(dplyr)
-library(fs)
-library(readr)
 ```
 
 # Introduction
@@ -38,6 +31,15 @@ The forage production is then calculated by averaging the dry matter production 
 First, we will load some example data to demonstrate how to calculate forage production using the `grazer` package.
 
 The example data contains information on forage production within a given sampling frame at different sampling locations within a pasture. Each row represents a different pasture, and the columns (e.g., Sample_1, Sample_2) represents the weight of clipped and dried forage (in grams) within the sampling frame at multiple sample sites within the same pasture.
+
+Load the required packages and the example data:
+
+```{r setup}
+library(grazer)
+library(dplyr)
+library(fs)
+library(readr)
+```
 
 ```{r load example data}
 file_path <- fs::path_package(
@@ -79,6 +81,7 @@ forage_data <- dplyr::mutate(
   forage_data,
   Avg = rowMeans(across(starts_with("Sample")), na.rm = TRUE)
 )
+head(forage_data)
 ```
 
 Finally, we can calculate the forage production per unit area (kg/ha) for each pasture using the `calc_forage_prod` function from the `grazer` package.
@@ -95,6 +98,8 @@ forage_production <- grazer::calc_forage_prod(
 head(forage_production)
 ```
 
+Here's the same calculation, but with the output units set to "lb/acre".
+
 ```{r calculate forage production lb/acre}
 forage_production <- grazer::calc_forage_prod(
   sample_wt = forage_data$Avg,
@@ -106,6 +111,8 @@ head(forage_production)
 ```
 
 Alternatively, we can use the `dplyr` package to create a new column in the `forage_data` data frame that contains the forage production per unit area (kg/ha) for each pasture.
+
+The biggest different between the two methods is that the `dplyr` method will keep the original data frame structure, while the `grazer` method will return a vector of the same length as the input data.
 
 ```{r calculate forage production using dplyr}
 forage_production <- dplyr::mutate(
