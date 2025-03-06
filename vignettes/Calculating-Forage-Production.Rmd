@@ -64,7 +64,7 @@ sample_area <- grazer::calc_plot_area(
 )
 ```
 
-Next, we will calculate the forage production per unit area (kg/ha) for each pasture by averaging the forage production across all sampling locations within each pasture and scaling it to the desired unit.
+We will calculate the forage production per unit area (kg/ha) for each pasture by averaging the forage production across all sampling locations within each pasture and scaling it to the desired unit.
 
 First, we need to calculate an average forage production value for each pasture. The average forage production is calculated by taking the mean of the forage production values from all sampling locations within a pasture.
 
