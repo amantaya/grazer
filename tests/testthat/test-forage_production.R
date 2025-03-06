@@ -118,3 +118,35 @@ test_that("output_units must be valid", {
     "output_units must be either 'kg/ha' or 'lb/acre'."
   )
 })
+
+test_that("forage production is calculated correctly when sample_units are ounces", {
+  sample_area <- calc_plot_area(
+    dim_x = 50,
+    dim_y = 50,
+    units = "cm"
+  )
+  result <- calc_forage_prod(
+    sample_wt = 3.5274,
+    sample_units = "avoirdupois_ounce",
+    sample_area = sample_area,
+    output_units = "kg/ha"
+  )
+  expected <- units::set_units(4000, "kg/hectare")
+  expect_equal(result, expected, tolerance = 0.01)
+})
+
+test_that("forage production is calculated correctly when sample_units are pounds", {
+  sample_area <- calc_plot_area(
+    dim_x = 50,
+    dim_y = 50,
+    units = "cm"
+  )
+  result <- calc_forage_prod(
+    sample_wt = 0.220462,
+    sample_units = "avoirdupois_pound",
+    sample_area = sample_area,
+    output_units = "kg/ha"
+  )
+  expected <- units::set_units(4000, "kg/hectare")
+  expect_equal(result, expected, tolerance = 0.01)
+})
