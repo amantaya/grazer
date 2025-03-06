@@ -20,5 +20,7 @@ Imports:
     openssl,
     readr,
     stringr,
-    units
+    units,
+    fs,
+    dplyr
 VignetteBuilder: knitr
