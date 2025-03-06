@@ -84,7 +84,7 @@ get_prelim_col_spec <- function(none) {
 #' @export
 #'
 get_prelim_data_schema <- function(none) {
-  empty_df <- readr::read_csv(
+  prelim_gf_schema <- readr::read_csv(
     system.file(
       "extdata",
       "preliminary-greenfeed-data-schema.csv",
@@ -92,5 +92,5 @@ get_prelim_data_schema <- function(none) {
     ),
     col_types = create_prelim_col_spec()
   )
-  return(empty_df)
+  prelim_gf_schema
 }
