@@ -13,6 +13,9 @@
 
 ## How to Install this R Package from GitHub
 
+# TODO: generate a hex icon for this package
+
 ```R
 devtools::install_github("amantaya/grazer")
 ```
+## Getting Started
