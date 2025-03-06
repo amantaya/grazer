@@ -150,3 +150,31 @@ test_that("forage production is calculated correctly when sample_units are pound
   expected <- units::set_units(4000, "kg/hectare")
   expect_equal(result, expected, tolerance = 0.01)
 })
+
+test_that("generate_forage_data generates correct number of rows and columns", {
+  n <- 10
+  data <- generate_forage_data(n)
+
+  # Check that the data frame has the correct number of rows
+  expect_equal(nrow(data), n)
+
+  # Check that the data frame has 5 columns
+  expect_equal(ncol(data), 5)
+})
+
+test_that("generate_forage_data generates non-negative values", {
+  n <- 10
+  data <- generate_forage_data(n)
+
+  # Check that all values are non-negative
+  expect_true(all(data >= 0))
+})
+
+test_that("generate_forage_data generates different values on subsequent calls", {
+  n <- 10
+  data1 <- generate_forage_data(n)
+  data2 <- generate_forage_data(n)
+
+  # Check that the generated data frames are not identical
+  expect_false(identical(data1, data2))
+})
