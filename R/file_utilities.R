@@ -15,7 +15,7 @@ generate_sha256_hash <- function(file_path) {
   file_hash <- openssl::sha256(con)
   close(con)
   file_hash <- as.character(file_hash)
-  return(file_hash)
+  file_hash
 }
 
 #' Generate md5 hash for a file
@@ -36,7 +36,7 @@ generate_md5_hash <- function(file_path) {
   file_hash <- openssl::md5(con)
   file_hash <- as.character(file_hash)
   close(con)
-  return(file_hash)
+  file_hash
 }
 
 #' @title strict_read_csv
@@ -65,7 +65,8 @@ strict_read_csv <-
 #' @param old_file Path to the old file.
 #' @param new_file Path to the new file.
 #'
-#' @return A Boolean value (TRUE/FALSE) indicating whether the file hashes match.
+#' @return A Boolean value (TRUE/FALSE)
+#' indicating whether the file hashes match.
 #'
 #' @examples
 #' old_file <- tempfile(fileext = ".txt")
@@ -88,5 +89,5 @@ compare_file_hashes <- function(old_file, new_file) {
   if (old_file_hash != new_file_hash) {
     warning("The file hashes do not match.")
   }
-  return(old_file_hash == new_file_hash)
+  old_file_hash == new_file_hash
 }
