@@ -64,5 +64,17 @@
 			"group": "build",
 			"label": "R: Install Package and Build Vignettes"
 		},
+		{
+			"label": "R: Style R Package",
+			"type": "R",
+			"code": [
+				"styler::style_pkg()"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"problemMatcher": []
+		}
 	]
 }
