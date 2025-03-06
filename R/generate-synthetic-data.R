@@ -10,22 +10,22 @@
 #' @export
 # TODO - create an alias for this function called `generate_rfid`
 generate_eid <- function(seed = NULL) {
-    # if seed is not NULL, set the supplied seed for reproducibility
-    if (!is.null(seed)) {
+  # if seed is not NULL, set the supplied seed for reproducibility
+  if (!is.null(seed)) {
     set.seed(seed)
-    } else {
+  } else {
     # TODO - remove this line. Seeds should be set by the user.
     set.seed(123)
-    }
-    # Generate the last 15 digits as a random number
-    last_15_digits <- sample(0:999999999999999, 1)
-    # Concatenate the first 9 digits (all zeros) with the last 15 digits
-    # to create a 24-digit RFID
-    # this converts the number to a string
-    rfid <- paste0("000000000", last_15_digits)
-    # convert the string to a number
-    as.numeric(rfid)
-    return(rfid)
+  }
+  # Generate the last 15 digits as a random number
+  last_15_digits <- sample(0:999999999999999, 1)
+  # Concatenate the first 9 digits (all zeros) with the last 15 digits
+  # to create a 24-digit RFID
+  # this converts the number to a string
+  rfid <- paste0("000000000", last_15_digits)
+  # convert the string to a number
+  as.numeric(rfid)
+  return(rfid)
 }
 
 #' Generate synthetic GreenFeed data for testing or simulation.
@@ -64,43 +64,46 @@ generate_eid <- function(seed = NULL) {
 #' @examples
 #' \dontrun{
 #' generate_synthetic_data("data/synthetic_prelim_greenfeed_data.csv", 1000)
-#'  }
+#' }
 #' @export
 #'
 generate_synthetic_data <- function(path, n, seed) {
+  # if seed is not NULL, set the supplied seed for reproducibility
+  if (!is.null(seed)) {
+    set.seed(seed)
+  } else {
+    set.seed(123)
+  }
 
-# if seed is not NULL, set the supplied seed for reproducibility
-if (!is.null(seed)) {
-  set.seed(seed)
-} else {
-  set.seed(123)
-}
-
-# Generate sample data
-sample_data <- data.frame(
+  # Generate sample data
+  sample_data <- data.frame(
     FeederID = sample(100:800, n, replace = TRUE),
     AnimalName = as.character(replicate(n, generate_eid())),
     RFID = as.character(replicate(n, generate_eid())),
     StartTime = sample(
-        seq(
-            lubridate::ymd_hms('2023-01-01 00:00:00'),
-            lubridate::ymd_hms('2023-12-31 23:59:59'),
-            by = "hour"),
-            n,
-            replace = TRUE),
+      seq(
+        lubridate::ymd_hms("2023-01-01 00:00:00"),
+        lubridate::ymd_hms("2023-12-31 23:59:59"),
+        by = "hour"
+      ),
+      n,
+      replace = TRUE
+    ),
     EndTime = sample(
-        seq(
-            lubridate::ymd_hms('2023-01-01 01:00:00'),
-            lubridate::ymd_hms('2024-01-01 00:00:00'),
-            by = "hour"),
-            n,
-            replace = TRUE),
+      seq(
+        lubridate::ymd_hms("2023-01-01 01:00:00"),
+        lubridate::ymd_hms("2024-01-01 00:00:00"),
+        by = "hour"
+      ),
+      n,
+      replace = TRUE
+    ),
     GoodDataDuration = sprintf(
-        "%02d:%02d:%02d",
-        sample(0:23, n, replace = TRUE),
-        sample(0:59, n, replace = TRUE),
-        sample(0:59, n, replace = TRUE)
-        ),
+      "%02d:%02d:%02d",
+      sample(0:23, n, replace = TRUE),
+      sample(0:59, n, replace = TRUE),
+      sample(0:59, n, replace = TRUE)
+    ),
     CO2GramsPerDay = round(runif(n, 0, 1000), 2), # NOTE: may need to adjust the range
     CH4GramsPerDay = round(runif(n, 0, 1000), 2), # NOTE: may need to adjust the range
     O2GramsPerDay = round(runif(n, 0, 1000), 2), # NOTE: may need to adjust the range
@@ -116,15 +119,17 @@ sample_data <- data.frame(
     TempPipeDegreesCelsius = round(runif(n, 0, 100), 2), # NOTE: may need to adjust the range
     IsPreliminary = rep(1, n), # NOTE: 1 is a logical for TRUE
     RunTime = sample(
-        seq(
-            lubridate::ymd_hms('2023-01-01 00:00:00'),
-            lubridate::ymd_hms('2023-12-31 23:59:59'),
-            by = "hour"),
-            n,
-            replace = TRUE)
+      seq(
+        lubridate::ymd_hms("2023-01-01 00:00:00"),
+        lubridate::ymd_hms("2023-12-31 23:59:59"),
+        by = "hour"
+      ),
+      n,
+      replace = TRUE
     )
+  )
 
-# Optionally, write the data to a CSV file
+  # Optionally, write the data to a CSV file
 
-write.csv(sample_data, path, row.names = FALSE)
+  write.csv(sample_data, path, row.names = FALSE)
 }
