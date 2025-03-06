@@ -1,8 +1,8 @@
 # 04-GreenFeed-R-Package
 
-#TODO - add repo status badge
-
 <!-- badges: start -->
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+
 [![R-CMD-check](https://github.com/amantaya/04-GreenFeed-R-Package/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/amantaya/04-GreenFeed-R-Package/actions/workflows/R-CMD-check.yaml)
 
 [![Codecov test coverage](https://codecov.io/gh/amantaya/04-GreenFeed-R-Package/graph/badge.svg)](https://app.codecov.io/gh/amantaya/04-GreenFeed-R-Package)
