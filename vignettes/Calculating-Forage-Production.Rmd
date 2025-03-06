@@ -56,7 +56,9 @@ Each row within the example data represents a different pasture, and the columns
 head(forage_data)
 ```
 
-The area covered by a sampling frame is not typically recorded in the data, so we need to specify the dimensions of the sampling frame to calculate the area covered by the sampling frame. In this example, we will assume that the sampling frame is 50 cm x 50 cm (0.25 m^2).
+## Calculating Sampling Frame Area
+
+The area covered by a sampling frame is not recorded in the data, so we need to specify the dimensions of the sampling frame to calculate the area covered by the sampling frame. In this example, we will assume that the sampling frame is 50 cm x 50 cm (0.25 m^2).
 
 ```{r calculate plot area}
 sample_area <- grazer::calc_plot_area(
@@ -64,11 +66,12 @@ sample_area <- grazer::calc_plot_area(
   dim_y = 50,
   units = "cm"
 )
+print(sample_area)
 ```
 
-We will calculate the forage production per unit area (kg/ha) for each pasture by averaging the forage production across all sampling locations within each pasture and scaling it to the desired unit.
+## Calculating Forage Production
 
-First, we need to calculate an average sample weight from all sampling locations within a pasture.
+We will calculate the forage production per unit area (kg/ha) for each pasture by first averaging the sample weights across all sampling locations within each pasture.
 
 ```{r calculate average forage production using base R}
 forage_data$Avg <- rowMeans(forage_data[, ], na.rm = TRUE)
@@ -86,7 +89,7 @@ forage_data <- dplyr::mutate(
 head(forage_data)
 ```
 
-Finally, we can calculate the forage production per unit area (kg/ha) for each pasture using the `calc_forage_prod` function from the `grazer` package. This function scales the average sample weight to the desired unit (e.g., kg/ha, lb/acre) based on the area covered by the sampling frame.
+Finally, we can calculate the forage production per unit area (kg/ha) for each pasture using the `calc_forage_prod` function. This function scales the average sample weight to the desired unit (e.g., kg/ha, lb/acre) based on the area covered by the sampling frame.
 
 Note that we chose our output units to be "kg/ha" in this example. You can choose other units such as "lb/acre" by changing the `units` argument in the `calc_forage_prod` function.
 
