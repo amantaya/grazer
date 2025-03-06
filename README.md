@@ -2,7 +2,9 @@
 
 #TODO - add repo status badge
 
-#TODO - add GitHub action for R CMD check
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/amantaya/04-GreenFeed-R-Package/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/amantaya/04-GreenFeed-R-Package/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
 
 #TODO - add GitHub action for lintr
 
