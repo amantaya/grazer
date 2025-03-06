@@ -28,6 +28,10 @@ Forage production is the amount of forage available for grazing animals. It is u
 
 First, we will load some example data to demonstrate how to calculate forage production using the `grazer` package.
 
+The example data contains information on forage production within a given sampling frame at different sampling locations within a pasture. Each represents a different pasture, and the columns (e.g., Sample_1, Sample_2) represent the forage production (in grams) at each sampling location.
+
+The example data also contains an `Avg` column that represents the average forage production across all sampling locations within each pasture.
+
 ```{r load example data}
 file_path <- fs::path_package(
   "extdata/example_forage_data.csv",
@@ -36,3 +40,24 @@ file_path <- fs::path_package(
 
 forage_data <- readr::read_csv(file_path)
 ```
+
+```{r head of forage data}
+head(forage_data)
+```
+
+Forage production data is usually collected using a quadrat or a sampling frame. A quadrat is a square or rectangular frame that is placed on the ground to sample vegetation. The size of the quadrat may vary depending on the study design and the vegetation type. In this example, we will assume that the sampling frame is 50 cm x 50 cm (0.25 m^2). **Note that we do not currently support the use of circular sampling frames, sometimes called "hoops".**
+
+Vegetation is clipped from within the sampling frame, dried, and weighed to determine the dry matter (DM) production per unit area.
+
+The forage production is then calculated by averaging the dry matter production from all sampling locations within a pasture and then scaling it to the desired unit (e.g., kg/ha, lb/acre).
+
+```{r calculate plot area}
+sample_area <- grazer::calc_plot_area(
+  dim_x = 50,
+  dim_y = 50,
+  units = "cm"
+)
+```
+
+
+
