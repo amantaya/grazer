@@ -30,8 +30,6 @@ The forage production is then calculated by averaging the dry matter production 
 
 First, we will load some example data to demonstrate how to calculate forage production using the `grazer` package.
 
-The example data contains information on forage production within a given sampling frame at different sampling locations within a pasture. Each row represents a different pasture, and the columns (e.g., Sample_1, Sample_2) represents the weight of clipped and dried forage (in grams) within the sampling frame at multiple sample sites within the same pasture.
-
 Load the required packages and the example data:
 
 ```{r setup}
@@ -49,6 +47,8 @@ file_path <- fs::path_package(
 
 forage_data <- readr::read_csv(file_path)
 ```
+
+Each row represents a different pasture, and the columns (e.g., Sample_1, Sample_2) represents the weight of clipped and dried forage (in grams) within the sampling frame at multiple sample sites within the same pasture.
 
 ```{r head of forage data}
 head(forage_data)
