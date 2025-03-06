@@ -104,5 +104,5 @@ generate_forage_data <- function(n_rows) {
     Sample_4 = pmax(rnorm(n = n_rows, mean = 100, sd = 50), 0),
     Sample_5 = pmax(rnorm(n = n_rows, mean = 100, sd = 50), 0)
   )
-  return(synthetic_prod_data)
+  synthetic_prod_data
 }
