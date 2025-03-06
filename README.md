@@ -4,6 +4,8 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/amantaya/04-GreenFeed-R-Package/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/amantaya/04-GreenFeed-R-Package/actions/workflows/R-CMD-check.yaml)
+
+[![Codecov test coverage](https://codecov.io/gh/amantaya/04-GreenFeed-R-Package/graph/badge.svg)](https://app.codecov.io/gh/amantaya/04-GreenFeed-R-Package)
 <!-- badges: end -->
 
 #TODO - add GitHub action for lintr
