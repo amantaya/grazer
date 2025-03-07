@@ -22,9 +22,7 @@ test_that("create_prelim_col_spec returns correct column specifications", {
     IsPreliminary = readr::col_logical(),
     RunTime = readr::col_datetime(format = "%Y-%m-%d %H:%M:%S")
   )
-
   actual_col_spec <- create_prelim_col_spec()
-
   expect_equal(actual_col_spec, expected_col_spec)
 })
 
