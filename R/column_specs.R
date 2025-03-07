@@ -74,6 +74,20 @@ write_greenfeed_col_spec <- function(file, type = "preliminary") {
   }
 }
 
+get_greenfeed_col_spec <- function(type = "preliminary") {
+  if (type == "preliminary" || type == "verified") {
+    readr::read_rds(
+      system.file(
+        "extdata",
+        paste0(type, "-greenfeed-col-spec.rds"),
+        package = "grazer"
+      )
+    )
+  } else {
+    stop("Invalid type argument. Must be either 'preliminary' or 'verified'.")
+  }
+}
+
 #' Read in a CSV file containing the GreenFeed data schema.
 #'
 #' @param type Specifies the type of the greenfeed data to write a
