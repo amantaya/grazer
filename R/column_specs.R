@@ -60,6 +60,9 @@ create_greenfeed_col_spec <- function(type = "preliminary") {
 #' preliminary greenfeed data.
 #'
 #' @examples
+#' \dontrun{
+#' write_greenfeed_col_spec("preliminary-greenfeed-col-spec.rds")
+#' }
 #' @export
 #' @importFrom readr write_rds
 write_greenfeed_col_spec <- function(file, type = "preliminary") {
