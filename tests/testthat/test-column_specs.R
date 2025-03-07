@@ -1,4 +1,4 @@
-test_that("greenfeed_col_spec returns correct column specifications", {
+test_that("create_greenfeed_col_spec returns correct column specifications", {
   expected_col_spec <- readr::cols(
     FeederID = readr::col_double(),
     AnimalName = readr::col_character(),
@@ -22,7 +22,7 @@ test_that("greenfeed_col_spec returns correct column specifications", {
     IsPreliminary = readr::col_logical(),
     RunTime = readr::col_datetime(format = "%Y-%m-%d %H:%M:%S")
   )
-  actual_col_spec <- greenfeed_col_spec()
+  actual_col_spec <- create_greenfeed_col_spec()
   expect_equal(actual_col_spec, expected_col_spec)
 })
 

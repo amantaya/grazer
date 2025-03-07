@@ -19,7 +19,7 @@
 #' create_col_spec()
 #' }
 #' @export
-greenfeed_col_spec <- function(type = "preliminary") {
+create_greenfeed_col_spec <- function(type = "preliminary") {
   if (type == "preliminary" || type == "verified") {
     readr::cols(
       FeederID = readr::col_double(),
@@ -49,33 +49,29 @@ greenfeed_col_spec <- function(type = "preliminary") {
   }
 }
 
-#' Get the preliminary greenfeed data column specification from an RDS file
+#' Write GreenFeed column specification to an RDS file.
 #'
-#' @param none A placeholder for the function to work with the
-#' get_prelim_greenfeed_schema function in the roxygen2 documentation.
+#' @param file The name of the RDS file to write the column specification to.
 #'
-#' @return A readr column specification for the
-#' preliminary greenfeed data where each column is parsed
-#' according to the data type in the column specification.
+#' @param type Specifies the type of the greenfeed data to write a
+#' column specification for. Options are `preliminary` and `verified`.
+#'
+#' @return An RDS file containing the column specification for the
+#' preliminary greenfeed data.
 #'
 #' @examples
-#' \dontrun{
-#' get_prelim_col_spec()
-#' }
-#'
 #' @export
-#'
-# FIXME - the RDS file does not exist yet
-get_prelim_col_spec <- function(none) {
-  prelim_greenfeed_col_spec <-
-    readr::read_rds(
-      here::here(
-        "inst",
-        "extdata",
-        "preliminary-greenfeed-data-column-specification.Rds"
-      )
+#' @importFrom readr write_rds
+write_greenfeed_col_spec <- function(file, type = "preliminary") {
+  if (type == "preliminary" || type == "verified") {
+    greenfeed_col_spec <- create_greenfeed_col_spec(type)
+    readr::write_rds(
+      greenfeed_col_spec,
+      file = file
     )
-  prelim_greenfeed_col_spec
+  } else {
+    stop("Invalid type argument. Must be either 'preliminary' or 'verified'.")
+  }
 }
 
 #' Get the preliminary greenfeed data schema from a CSV file
@@ -105,7 +101,7 @@ get_prelim_greenfeed_schema <- function(none) {
       "preliminary-greenfeed-data-schema.csv",
       package = "grazer"
     ),
-    col_types = greenfeed_col_spec()
+    col_types = create_greenfeed_col_spec()
   )
   prelim_gf_schema
 }
