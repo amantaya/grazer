@@ -3,7 +3,7 @@
 export(calc_forage_prod)
 export(calc_plot_area)
 export(compare_file_hashes)
-export(create_prelim_col_spec)
+export(greenfeed_col_spec)
 export(generate_eid)
 export(generate_forage_data)
 export(generate_md5_hash)

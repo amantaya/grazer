@@ -1,7 +1,7 @@
 #' Create a `readr` column specification for the preliminary greenfeed data
 #'
-#' @param none A placeholder for the function to work with the
-#' create_col_spec function in the roxygen2 documentation.
+#' @param type Specifies the type of the greenfeed data to create a
+#' column specification for. Options are `preliminary` and `verified`.
 #'
 #' @return A `readr` column specification for the preliminary greenfeed data.
 #'
@@ -10,30 +10,34 @@
 #' create_col_spec()
 #' }
 #' @export
-create_prelim_col_spec <- function(none) {
-  readr::cols(
-    FeederID = readr::col_double(),
-    AnimalName = readr::col_character(),
-    RFID = readr::col_character(),
-    StartTime = readr::col_datetime(format = "%Y-%m-%d %H:%M:%S"),
-    EndTime = readr::col_datetime(format = "%Y-%m-%d %H:%M:%S"),
-    GoodDataDuration = readr::col_time(),
-    CO2GramsPerDay = readr::col_double(),
-    CH4GramsPerDay = readr::col_double(),
-    O2GramsPerDay = readr::col_double(),
-    H2GramsPerDay = readr::col_double(),
-    H2SGramsPerDay = readr::col_double(),
-    AirflowLitersPerSec = readr::col_double(),
-    AirflowCf = readr::col_double(),
-    WindSpeedMetersPerSec = readr::col_double(),
-    WindDirDeg = readr::col_double(),
-    WindCf = readr::col_double(),
-    WasInterrupted = readr::col_logical(),
-    InterruptingTags = readr::col_character(),
-    TempPipeDegreesCelsius = readr::col_double(),
-    IsPreliminary = readr::col_logical(),
-    RunTime = readr::col_datetime(format = "%Y-%m-%d %H:%M:%S")
-  )
+greenfeed_col_spec <- function(type = "preliminary") {
+  if (type == "preliminary" || type == "verified") {
+    readr::cols(
+      FeederID = readr::col_double(),
+      AnimalName = readr::col_character(),
+      RFID = readr::col_character(),
+      StartTime = readr::col_datetime(format = "%Y-%m-%d %H:%M:%S"),
+      EndTime = readr::col_datetime(format = "%Y-%m-%d %H:%M:%S"),
+      GoodDataDuration = readr::col_time(),
+      CO2GramsPerDay = readr::col_double(),
+      CH4GramsPerDay = readr::col_double(),
+      O2GramsPerDay = readr::col_double(),
+      H2GramsPerDay = readr::col_double(),
+      H2SGramsPerDay = readr::col_double(),
+      AirflowLitersPerSec = readr::col_double(),
+      AirflowCf = readr::col_double(),
+      WindSpeedMetersPerSec = readr::col_double(),
+      WindDirDeg = readr::col_double(),
+      WindCf = readr::col_double(),
+      WasInterrupted = readr::col_logical(),
+      InterruptingTags = readr::col_character(),
+      TempPipeDegreesCelsius = readr::col_double(),
+      IsPreliminary = readr::col_logical(),
+      RunTime = readr::col_datetime(format = "%Y-%m-%d %H:%M:%S")
+    )
+  } else {
+    stop("Invalid type argument. Must be either 'preliminary' or 'verified'.")
+  }
 }
 
 #' Get the preliminary greenfeed data column specification from an RDS file
@@ -82,7 +86,8 @@ get_prelim_col_spec <- function(none) {
 #'
 #' @export
 #'
-# TODO - refactor the function name to be get_greenfeed_schema() and have a type argument
+# TODO - refactor the function name to be get_greenfeed_schema()
+# nd have a type argument
 # that specifies the type of greenfeed data schema to get
 get_prelim_greenfeed_schema <- function(none) {
   prelim_gf_schema <- readr::read_csv(
@@ -91,7 +96,7 @@ get_prelim_greenfeed_schema <- function(none) {
       "preliminary-greenfeed-data-schema.csv",
       package = "grazer"
     ),
-    col_types = create_prelim_col_spec()
+    col_types = greenfeed_col_spec()
   )
   prelim_gf_schema
 }
