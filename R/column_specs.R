@@ -105,16 +105,17 @@ get_greenfeed_col_spec <- function(type = "preliminary") {
 #'
 #' @export
 #' @importFrom readr read_csv
+#' @importFrom fs path_package
 get_greenfeed_schema <- function(type = "preliminary") {
   if (type == "preliminary" || type == "verified") {
-    readr::read_csv(
-      system.file(
-        "extdata",
-        paste0(type, "-greenfeed-data-schema.csv"),
-        package = "grazer"
-      ),
-      col_types = create_greenfeed_col_spec(type)
-    )
+  path = fs::path_package(
+    "extdata",
+    paste0(type, "-greenfeed-data.csv"),
+    package = "grazer"
+  )
+  readr::read_csv(path,
+    col_types = create_greenfeed_col_spec(type)
+  )
   } else {
     stop("Invalid type argument. Must be either 'preliminary' or 'verified'.")
   }
