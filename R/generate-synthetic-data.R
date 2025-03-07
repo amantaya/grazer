@@ -60,22 +60,15 @@ generate_eid <- function(seed = NULL) {
 #'
 #' @importFrom stats runif
 #' @importFrom utils write.csv
+#' @importFrom lubridate ymd_hms
+#' @importFrom hms as_hms
 #'
 #' @examples
 #' \dontrun{
-#' generate_synthetic_data("data/synthetic_prelim_greenfeed_data.csv", 1000)
+#' generate_greenfeed_data("data/synthetic_prelim_greenfeed_data.csv", 1000)
 #' }
 #' @export
-#'
-generate_synthetic_data <- function(path, n, seed) {
-  # if seed is not NULL, set the supplied seed for reproducibility
-  if (!is.null(seed)) {
-    set.seed(seed)
-  } else {
-    set.seed(123)
-  }
-
-  # Generate sample data
+generate_greenfeed_data <- function(n, type = "preliminary") {
   sample_data <- data.frame(
     FeederID = sample(100:800, n, replace = TRUE),
     AnimalName = as.character(replicate(n, generate_eid())),
@@ -89,35 +82,22 @@ generate_synthetic_data <- function(path, n, seed) {
       n,
       replace = TRUE
     ),
-    EndTime = sample(
-      seq(
-        lubridate::ymd_hms("2023-01-01 01:00:00"),
-        lubridate::ymd_hms("2024-01-01 00:00:00"),
-        by = "hour"
-      ),
-      n,
-      replace = TRUE
-    ),
-    GoodDataDuration = sprintf(
-      "%02d:%02d:%02d",
-      sample(0:23, n, replace = TRUE),
-      sample(0:59, n, replace = TRUE),
-      sample(0:59, n, replace = TRUE)
-    ),
-    CO2GramsPerDay = round(runif(n, 0, 1000), 2), # NOTE: may need to adjust the range
-    CH4GramsPerDay = round(runif(n, 0, 1000), 2), # NOTE: may need to adjust the range
-    O2GramsPerDay = round(runif(n, 0, 1000), 2), # NOTE: may need to adjust the range
-    H2GramsPerDay = round(runif(n, 0, 1000), 2), # NOTE: may need to adjust the range
-    H2SGramsPerDay = round(runif(n, 0, 1000), 2), # NOTE: may need to adjust the range
-    AirflowLitersPerSec = round(runif(n, 10, 30), 2), # NOTE: may need to adjust the range
-    AirflowCf = round(runif(n, 10, 30), 2), # NOTE: may need to adjust the range
-    WindSpeedMetersPerSec = round(runif(n, 0, 10), 2), # NOTE: may need to adjust the range
-    WindDirDeg = round(runif(n, 0, 360), 2), # NOTE: may need to adjust the range
-    WindCf = round(runif(n, 0, 100), 2), # NOTE: may need to adjust the range
+    EndTime = NA,
+    GoodDataDuration = NA,
+    CO2GramsPerDay = round(rnorm(n, mean = 1000, sd = 100), 2), # TODO adjust mean and SD # nolint: line_length_linter
+    CH4GramsPerDay = round(rnorm(n, mean = 200, sd = 50), 2), # TODO adjust mean and SD # nolint: line_length_linter
+    O2GramsPerDay = round(rnorm(n, mean = 200, sd = 50), 2), # TODO adjust mean and SD # nolint: line_length_linter
+    H2GramsPerDay = round(rnorm(n, mean = 200, sd = 50), 2), # TODO adjust mean and SD # nolint: line_length_linter
+    H2SGramsPerDay = round(rnorm(n, mean = 200, sd = 50), 2), # TODO adjust mean and SD # nolint: line_length_linter
+    AirflowLitersPerSec = round(runif(n, 10, 30), 2),
+    AirflowCf = round(runif(n, 0, 2), 2),
+    WindSpeedMetersPerSec = round(runif(n, 0, 10), 2),
+    WindDirDeg = round(runif(n, 0, 360), 2),
+    WindCf = round(runif(n, 0, 2), 2),
     WasInterrupted = sample(c(TRUE, FALSE), n, replace = TRUE),
-    InterruptingTags = as.character(replicate(n, generate_eid())), # NOTE: most of the observations will be NA. We need to inject the a realistic number of interruptions.
-    TempPipeDegreesCelsius = round(runif(n, 0, 100), 2), # NOTE: may need to adjust the range
-    IsPreliminary = rep(1, n), # NOTE: 1 is a logical for TRUE
+    InterruptingTags = NA_character_,
+    TempPipeDegreesCelsius = round(runif(n, 0, 50), 2),
+    IsPreliminary = ifelse(type == "preliminary", 1, 0),
     RunTime = sample(
       seq(
         lubridate::ymd_hms("2023-01-01 00:00:00"),
@@ -129,7 +109,21 @@ generate_synthetic_data <- function(path, n, seed) {
     )
   )
 
-  # Optionally, write the data to a CSV file
+  # the EndTime is the StartTime plus a random duration
+  # between 2 minutes and 20 minutes
+  # this is in seconds
+  sample_data$EndTime <- sample_data$StartTime + runif(n, 120, 1200)
 
-  write.csv(sample_data, path, row.names = FALSE)
+  sample_data$GoodDataDuration <- difftime(
+    sample_data$EndTime,
+    sample_data$StartTime,
+    units = "secs"
+  )
+  sample_data$GoodDataDuration <- round(sample_data$GoodDataDuration, digits = 0)
+
+  sample_data$GoodDataDuration <- hms::as_hms(sample_data$GoodDataDuration)
+
+  sample_data <- sample_data[order(sample_data$StartTime), ]
+
+  sample_data
 }
