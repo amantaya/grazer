@@ -12,7 +12,8 @@ compare_file_hashes(old_file, new_file)
 \item{new_file}{Path to the new file.}
 }
 \value{
-A Boolean value (TRUE/FALSE) indicating whether the file hashes match.
+A Boolean value (TRUE/FALSE)
+indicating whether the file hashes match.
 }
 \description{
 compare_file_hashes

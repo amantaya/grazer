@@ -11,12 +11,15 @@ calc_forage_prod(sample_wt, sample_units, sample_area, output_units)
 
 \item{sample_units}{The units of the forage sample weight.}
 
-\item{sample_area}{The area of the sampling frame. Most likely calculated using \code{\link{calc_plot_area}}.}
+\item{sample_area}{The area of the sampling frame.
+Most likely calculated using \code{\link{calc_plot_area}}.}
 
-\item{output_units}{The units to return the forage production in. Either 'kg/ha' or 'lb/acre'.}
+\item{output_units}{The units to return the forage production in.
+Either 'kg/ha' or 'lb/acre'.}
 }
 \value{
-The forage production in the units provided, either 'kg/ha' or 'lb/acre'.
+The forage production in the units provided.
+Either 'kg/ha' or 'lb/acre'.
 }
 \description{
 Calculate Forage Production
