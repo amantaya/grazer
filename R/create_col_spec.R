@@ -54,7 +54,7 @@ create_prelim_col_spec <- function(none) {
 #'
 # FIXME - the RDS file does not exist yet
 get_prelim_col_spec <- function(none) {
-  prelim_greenfeed_data_col_spec <-
+  prelim_greenfeed_col_spec <-
     readr::read_rds(
       here::here(
         "inst",
@@ -62,7 +62,7 @@ get_prelim_col_spec <- function(none) {
         "preliminary-greenfeed-data-column-specification.Rds"
       )
     )
-  prelim_greenfeed_data_col_spec
+  prelim_greenfeed_col_spec
 }
 
 #' Get the preliminary greenfeed data schema from a CSV file
