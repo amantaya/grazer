@@ -26,5 +26,63 @@ test_that("create_greenfeed_col_spec returns correct column specifications", {
   expect_equal(actual_col_spec, expected_col_spec)
 })
 
-# TODO - create a test for get_prelim_col_spec
-# test_that("get_prelim_col_spec returns correct column specifications", {
+test_that("create_greenfeed_col_spec throws error for invalid type", {
+  expect_error(
+    create_greenfeed_col_spec("invalid"),
+    "Invalid type argument. Must be either 'preliminary' or 'verified'."
+  )
+})
+
+test_that("write_greenfeed_col_spec writes correct column specifications", {
+  temp_file <- tempfile(fileext = ".rds")
+  write_greenfeed_col_spec(temp_file)
+  actual_col_spec <- readr::read_rds(temp_file)
+  expected_col_spec <- create_greenfeed_col_spec()
+  expect_equal(actual_col_spec, expected_col_spec)
+})
+
+test_that("write_greenfeed_col_spec throws error for invalid type", {
+  expect_error(
+    write_greenfeed_col_spec("temp.rds", type = "invalid"),
+    "Invalid type argument. Must be either 'preliminary' or 'verified'."
+  )
+})
+
+test_that("get_greenfeed_col_spec is the same as create_greenfeed_col_spec", {
+  actual <- get_greenfeed_col_spec()
+  expected <- create_greenfeed_col_spec()
+  expect_identical(actual, expected)
+})
+
+test_that("get_greenfeed_schema returns a tibble with the correct col spec", {
+  file_path <- testthat::test_path(
+    "../../inst/extdata/preliminary-greenfeed-data.csv"
+  )
+  actual <- readr::read_csv(
+    file_path,
+    col_types = create_greenfeed_col_spec()
+  )
+  expected <- tibble::tibble(
+    FeederID = NA_real_,
+    AnimalName = NA_character_,
+    RFID = NA_character_,
+    StartTime = NA_character_,
+    EndTime = NA_character_,
+    GoodDataDuration = NA_character_,
+    CO2GramsPerDay = NA_real_,
+    CH4GramsPerDay = NA_real_,
+    O2GramsPerDay = NA_real_,
+    H2GramsPerDay = NA_real_,
+    H2SGramsPerDay = NA_real_,
+    AirflowLitersPerSec = NA_real_,
+    AirflowCf = NA_real_,
+    WindSpeedMetersPerSec = NA_real_,
+    WindDirDeg = NA_real_,
+    WindCf = NA_real_,
+    WasInterrupted = NA,
+    InterruptingTags = NA_character_,
+    TempPipeDegreesCelsius = NA_real_,
+    IsPreliminary = NA,
+    RunTime = NA_character_
+  )
+})
