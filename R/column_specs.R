@@ -1,4 +1,13 @@
-#' Create a `readr` column specification for the preliminary greenfeed data
+#' Create a `readr` column specification for GreenFeed data.
+#'
+#' `readr` column specifications are used to specify the data types of each
+#' column in a data frame when reading in data from a file. This function
+#' creates a column specification for GreenFeed data.
+#'
+#' Column specifications are useful for ensuring that data is read in
+#' correctly and that columns are parsed according to the correct data type.
+#' For example, a column that contains dates should be parsed as a date
+#' when reading in the data.
 #'
 #' @param type Specifies the type of the greenfeed data to create a
 #' column specification for. Options are `preliminary` and `verified`.
