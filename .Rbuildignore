@@ -10,3 +10,4 @@
 ^\.bashrc$
 ^\.vscode$
 ^scratch\.R$
+^data-raw$
