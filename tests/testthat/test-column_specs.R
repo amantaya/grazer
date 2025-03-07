@@ -55,11 +55,11 @@ test_that("get_greenfeed_col_spec is the same as create_greenfeed_col_spec", {
 })
 
 test_that("get_greenfeed_schema returns a tibble with the correct col spec", {
-  file_path <- testthat::test_path(
+  path <- testthat::test_path(
     "../../inst/extdata/preliminary-greenfeed-data.csv"
   )
   actual <- readr::read_csv(
-    file_path,
+    path,
     col_types = create_greenfeed_col_spec()
   )
   expected <- tibble::tibble(
@@ -85,4 +85,5 @@ test_that("get_greenfeed_schema returns a tibble with the correct col spec", {
     IsPreliminary = NA,
     RunTime = NA_character_
   )
+  expect_equal(actual, expected)
 })
