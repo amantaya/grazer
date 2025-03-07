@@ -74,34 +74,34 @@ write_greenfeed_col_spec <- function(file, type = "preliminary") {
   }
 }
 
-#' Get the preliminary greenfeed data schema from a CSV file
+#' Read in a CSV file containing the GreenFeed data schema.
 #'
-#' @param none A placeholder for the function to work with the
-#' get_prelim_greenfeed_schema function in the roxygen2 documentation.
+#' @param type Specifies the type of the greenfeed data to write a
+#' column specification for. Options are `preliminary` and `verified`.
 #'
 #' @return A tibble with the standardized column names
-#' for preliminary greenfeed data that has been read
+#' for greenfeed data that has been read
 #' in and parsed according to the
 #' preliminary greenfeed data column specification.
 #'
 #' @examples
 #' \dontrun{
-#' get_prelim_greenfeed_schema()
+#' get_greenfeed_schema()
 #' }
 #'
 #' @export
-#'
-# TODO - refactor the function name to be get_greenfeed_schema()
-# nd have a type argument
-# that specifies the type of greenfeed data schema to get
-get_prelim_greenfeed_schema <- function(none) {
-  prelim_gf_schema <- readr::read_csv(
-    system.file(
-      "extdata",
-      "preliminary-greenfeed-data-schema.csv",
-      package = "grazer"
-    ),
-    col_types = create_greenfeed_col_spec()
-  )
-  prelim_gf_schema
+#' @importFrom readr read_csv
+get_greenfeed_schema <- function(type = "preliminary") {
+  if (type == "preliminary" || type == "verified") {
+    readr::read_csv(
+      system.file(
+        "extdata",
+        paste0(type, "-greenfeed-data-schema.csv"),
+        package = "grazer"
+      ),
+      col_types = create_greenfeed_col_spec(type)
+    )
+  } else {
+    stop("Invalid type argument. Must be either 'preliminary' or 'verified'.")
+  }
 }
