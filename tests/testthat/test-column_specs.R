@@ -54,36 +54,40 @@ test_that("get_greenfeed_col_spec is the same as create_greenfeed_col_spec", {
   expect_identical(actual, expected)
 })
 
-test_that("get_greenfeed_schema returns a tibble with the correct col spec", {
-  path <- testthat::test_path(
-    "../../inst/extdata/preliminary-greenfeed-data.csv"
+test_that("get_greenfeed_schema reads preliminary data correctly", {
+
+  path <- system.file("extdata",
+    "preliminary-greenfeed-data.csv",
+    package = "grazer"
   )
-  actual <- readr::read_csv(
+  actual_data <- get_greenfeed_schema(type = "preliminary")
+
+  expected_data <- readr::read_csv(
     path,
-    col_types = create_greenfeed_col_spec()
+    col_types = create_greenfeed_col_spec("preliminary")
   )
-  expected <- tibble::tibble(
-    FeederID = NA_real_,
-    AnimalName = NA_character_,
-    RFID = NA_character_,
-    StartTime = NA_character_,
-    EndTime = NA_character_,
-    GoodDataDuration = NA_character_,
-    CO2GramsPerDay = NA_real_,
-    CH4GramsPerDay = NA_real_,
-    O2GramsPerDay = NA_real_,
-    H2GramsPerDay = NA_real_,
-    H2SGramsPerDay = NA_real_,
-    AirflowLitersPerSec = NA_real_,
-    AirflowCf = NA_real_,
-    WindSpeedMetersPerSec = NA_real_,
-    WindDirDeg = NA_real_,
-    WindCf = NA_real_,
-    WasInterrupted = NA,
-    InterruptingTags = NA_character_,
-    TempPipeDegreesCelsius = NA_real_,
-    IsPreliminary = NA,
-    RunTime = NA_character_
+  expect_equal(actual_data, expected_data)
+})
+
+test_that("get_greenfeed_schema reads verified data correctly", {
+
+  path <- system.file("extdata",
+    "verified-greenfeed-data.csv",
+    package = "grazer"
   )
-  expect_equal(actual, expected)
+  actual_data <- get_greenfeed_schema(type = "verified")
+  actual_data <- get_greenfeed_schema(type = "verified")
+
+  expected_data <- readr::read_csv(
+    path,
+    col_types = create_greenfeed_col_spec("verified")
+  )
+  expect_equal(actual_data, expected_data)
+})
+
+test_that("get_greenfeed_schema throws error for invalid type", {
+  expect_error(
+    get_greenfeed_schema(type = "invalid"),
+    "Invalid type argument. Must be either 'preliminary' or 'verified'."
+  )
 })
