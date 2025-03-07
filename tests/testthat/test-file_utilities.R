@@ -1,8 +1,6 @@
 test_that("md5 hash of preliminary greenfeed data schema is correct", {
-  # QUESTION: instead of using testdata, should we use inst/data?
   path <- testthat::test_path(
-    "testdata",
-    "preliminary-greenfeed-data-schema.csv"
+    "../../inst/extdata/preliminary-greenfeed-data.csv"
   )
   actual_md5hash <- generate_md5_hash(path)
   actual_md5hash <- as.character(actual_md5hash)
@@ -14,10 +12,8 @@ test_that("md5 hash of preliminary greenfeed data schema is correct", {
 })
 
 test_that("sha256 hash of preliminary greenfeed data schema is correct", {
-  # QUESTION: instead of using testdata, should we use inst/data?
   path <- testthat::test_path(
-    "testdata",
-    "preliminary-greenfeed-data-schema.csv"
+    "../../inst/extdata/preliminary-greenfeed-data.csv"
   )
   actual_sha256hash <- generate_sha256_hash(path)
   actual_sha256hash <- as.character(actual_sha256hash)
