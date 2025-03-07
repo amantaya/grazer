@@ -11,7 +11,7 @@
 #' }
 #' @export
 create_prelim_col_spec <- function(none) {
-  prelim_column_spec <- readr::cols(
+  readr::cols(
     FeederID = readr::col_double(),
     AnimalName = readr::col_character(),
     RFID = readr::col_character(),
