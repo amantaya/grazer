@@ -55,7 +55,6 @@ test_that("get_greenfeed_col_spec is the same as create_greenfeed_col_spec", {
 })
 
 test_that("get_greenfeed_schema reads preliminary data correctly", {
-
   path <- system.file("extdata",
     "preliminary-greenfeed-data.csv",
     package = "grazer"
@@ -70,7 +69,6 @@ test_that("get_greenfeed_schema reads preliminary data correctly", {
 })
 
 test_that("get_greenfeed_schema reads verified data correctly", {
-
   path <- system.file("extdata",
     "verified-greenfeed-data.csv",
     package = "grazer"
