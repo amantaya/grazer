@@ -22,5 +22,7 @@ Imports:
     openssl,
     readr,
     stringr,
-    units
+    units,
+    fs,
+    hms
 VignetteBuilder: knitr
