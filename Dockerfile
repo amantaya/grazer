@@ -3,7 +3,9 @@ FROM rocker/r-ver:4.4.1
 RUN apt-get update && apt-get install -y \
     gpg \
     git \
-    python3-pip
+    python3-pip \
+    libudunits2-dev \
+    pandoc
 
 RUN pip install pre-commit
 
