@@ -84,11 +84,11 @@ generate_greenfeed_data <- function(n, type = "preliminary") {
     ),
     EndTime = NA,
     GoodDataDuration = NA,
-    CO2GramsPerDay = round(rnorm(n, mean = 1000, sd = 100), 2), # TODO adjust mean and SD # nolint: line_length_linter
-    CH4GramsPerDay = round(rnorm(n, mean = 200, sd = 50), 2), # TODO adjust mean and SD # nolint: line_length_linter
-    O2GramsPerDay = round(rnorm(n, mean = 200, sd = 50), 2), # TODO adjust mean and SD # nolint: line_length_linter
-    H2GramsPerDay = round(rnorm(n, mean = 200, sd = 50), 2), # TODO adjust mean and SD # nolint: line_length_linter
-    H2SGramsPerDay = round(rnorm(n, mean = 200, sd = 50), 2), # TODO adjust mean and SD # nolint: line_length_linter
+    CO2GramsPerDay = round(pmax(rnorm(n, mean = 1000, sd = 100), 0), 2), # TODO adjust mean and SD
+    CH4GramsPerDay = round(pmax(rnorm(n, mean = 200, sd = 50), 0), 2), # TODO adjust mean and SD
+    O2GramsPerDay = round(pmax(rnorm(n, mean = 200, sd = 50), 0), 2), # TODO adjust mean and SD
+    H2GramsPerDay = round(pmax(rnorm(n, mean = 200, sd = 50), 0), 2), # TODO adjust mean and SD
+    H2SGramsPerDay = round(pmax(rnorm(n, mean = 200, sd = 50), 0), 2), # TODO adjust mean and SD
     AirflowLitersPerSec = round(runif(n, 10, 30), 2),
     AirflowCf = round(runif(n, 0, 2), 2),
     WindSpeedMetersPerSec = round(runif(n, 0, 10), 2),
