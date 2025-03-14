@@ -2,7 +2,8 @@
 #'
 #' @param seed An optional seed for reproducibility.
 #'
-#' @return A numeric value corresponding to the RFID. The first 9 digits are all zeros. The last 15 digits are randomly generated.
+#' @return A numeric value corresponding to the RFID.
+#' The first 9 digits are all zeros. The last 15 digits are randomly generated.
 #'
 #' @examples
 #' generate_eid(seed = 123)
@@ -22,6 +23,7 @@ generate_eid <- function(seed = NULL) {
   # Concatenate the first 9 digits (all zeros) with the last 15 digits
   # to create a 24-digit RFID
   # this converts the number to a string
+  # TODO - the leading zeros are specific to C-Lock and we should have an option to remove them
   rfid <- paste0("000000000", last_15_digits)
   # convert the string to a number
   as.numeric(rfid)
