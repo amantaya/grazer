@@ -87,6 +87,19 @@
 				"isDefault": false
 			},
 			"problemMatcher": []
+		},
+		{
+			"label": "R: Style R File",
+			"type": "R",
+			"code": [
+				"styler::style_file('${file}')"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"problemMatcher": [],
+			"detail": "Styles a specific R file using styler::style_file()"
 		}
 	]
 }
