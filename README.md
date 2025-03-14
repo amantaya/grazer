@@ -16,6 +16,6 @@
 # TODO: generate a hex icon for this package
 
 ```R
-devtools::install_github("amantaya/grazer")
+devtools::install_github("amantaya/grazer", build_vignettes = TRUE)
 ```
 ## Getting Started
