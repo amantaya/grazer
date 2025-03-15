@@ -7,7 +7,7 @@
 generate_forage_data(n_rows)
 }
 \arguments{
-\item{n}{The number of samples (rows) to generate.}
+\item{n_rows}{The number of samples (rows) to generate.}
 }
 \value{
 A data frame with random forage production data.
