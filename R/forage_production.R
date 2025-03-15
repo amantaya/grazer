@@ -86,7 +86,7 @@ calc_forage_prod <- function(
 
 #' Generate a Random Sample of Forage Production Data
 #'
-#' @param n The number of samples (rows) to generate.
+#' @param n_rows The number of samples (rows) to generate.
 #'
 #' @return A data frame with random forage production data.
 #'
