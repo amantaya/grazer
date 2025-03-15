@@ -95,7 +95,9 @@ calc_forage_prod <- function(
 #'
 #' @export
 generate_forage_data <- function(n_rows) {
-  # add a function parameter specify the number of samples (columns) to generate
+  # TODO: add a function parameter to specify
+  # the mean and standard deviation
+  # and the number of samples (columns) to generate
   synthetic_prod_data <- data.frame(
     # the `pmax` function ensures that the values are non-negative
     Sample_1 = pmax(rnorm(n = n_rows, mean = 100, sd = 50), 0),
