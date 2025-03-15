@@ -10,7 +10,8 @@ generate_eid(seed = NULL)
 \item{seed}{An optional seed for reproducibility.}
 }
 \value{
-A numeric value corresponding to the RFID. The first 9 digits are all zeros. The last 15 digits are randomly generated.
+A numeric value corresponding to the RFID.
+The first 9 digits are all zeros. The last 15 digits are randomly generated.
 }
 \description{
 Title
