@@ -33,7 +33,7 @@ generate_eid <- function(seed = NULL) {
 #' Generate synthetic GreenFeed data for testing or simulation.
 #'
 #' @param path A path to where the synthetic data should be saved.
-#' @param n The number of rows of synthetic data to generate.
+#' @param n_rows The number of rows of synthetic data to generate.
 #' @param seed An optional seed for reproducibility.
 #'
 #' @return A CSV file containing synthetic GreenFeed data.
@@ -67,38 +67,38 @@ generate_eid <- function(seed = NULL) {
 #'
 #' @examples
 #' \dontrun{
-#' generate_greenfeed_data("data/synthetic_prelim_greenfeed_data.csv", 1000)
+#' generate_greenfeed_data(n_rows = 1000, type = "preliminary")
 #' }
 #' @export
-generate_greenfeed_data <- function(n, type = "preliminary") {
+generate_greenfeed_data <- function(n_rows, type = "preliminary") {
   sample_data <- data.frame(
-    FeederID = sample(100:800, n, replace = TRUE),
-    AnimalName = as.character(replicate(n, generate_eid())),
-    RFID = as.character(replicate(n, generate_eid())),
+    FeederID = sample(100:800, n_rows, replace = TRUE),
+    AnimalName = as.character(replicate(n_rows, generate_eid())),
+    RFID = as.character(replicate(n_rows, generate_eid())),
     StartTime = sample(
       seq(
         lubridate::ymd_hms("2023-01-01 00:00:00"),
         lubridate::ymd_hms("2023-12-31 23:59:59"),
         by = "hour"
       ),
-      n,
+      n_rows,
       replace = TRUE
     ),
     EndTime = NA,
     GoodDataDuration = NA,
-    CO2GramsPerDay = round(pmax(rnorm(n, mean = 1000, sd = 100), 0), 2), # TODO adjust mean and SD
-    CH4GramsPerDay = round(pmax(rnorm(n, mean = 200, sd = 50), 0), 2), # TODO adjust mean and SD
-    O2GramsPerDay = round(pmax(rnorm(n, mean = 200, sd = 50), 0), 2), # TODO adjust mean and SD
-    H2GramsPerDay = round(pmax(rnorm(n, mean = 200, sd = 50), 0), 2), # TODO adjust mean and SD
-    H2SGramsPerDay = round(pmax(rnorm(n, mean = 200, sd = 50), 0), 2), # TODO adjust mean and SD
-    AirflowLitersPerSec = round(runif(n, 10, 30), 2),
-    AirflowCf = round(runif(n, 0, 2), 2),
-    WindSpeedMetersPerSec = round(runif(n, 0, 10), 2),
-    WindDirDeg = round(runif(n, 0, 360), 2),
-    WindCf = round(runif(n, 0, 2), 2),
-    WasInterrupted = sample(c(TRUE, FALSE), n, replace = TRUE),
+    CO2GramsPerDay = round(pmax(rnorm(n_rows, mean = 1000, sd = 100), 0), 2), # TODO adjust mean and SD
+    CH4GramsPerDay = round(pmax(rnorm(n_rows, mean = 200, sd = 50), 0), 2), # TODO adjust mean and SD
+    O2GramsPerDay = round(pmax(rnorm(n_rows, mean = 200, sd = 50), 0), 2), # TODO adjust mean and SD
+    H2GramsPerDay = round(pmax(rnorm(n_rows, mean = 200, sd = 50), 0), 2), # TODO adjust mean and SD
+    H2SGramsPerDay = round(pmax(rnorm(n_rows, mean = 200, sd = 50), 0), 2), # TODO adjust mean and SD
+    AirflowLitersPerSec = round(runif(n_rows, 10, 30), 2),
+    AirflowCf = round(runif(n_rows, 0, 2), 2),
+    WindSpeedMetersPerSec = round(runif(n_rows, 0, 10), 2),
+    WindDirDeg = round(runif(n_rows, 0, 360), 2),
+    WindCf = round(runif(n_rows, 0, 2), 2),
+    WasInterrupted = sample(c(TRUE, FALSE), n_rows, replace = TRUE),
     InterruptingTags = NA_character_,
-    TempPipeDegreesCelsius = round(runif(n, 0, 50), 2),
+    TempPipeDegreesCelsius = round(runif(n_rows, 0, 50), 2),
     IsPreliminary = ifelse(type == "preliminary", 1, 0),
     RunTime = sample(
       seq(
@@ -106,7 +106,7 @@ generate_greenfeed_data <- function(n, type = "preliminary") {
         lubridate::ymd_hms("2023-12-31 23:59:59"),
         by = "hour"
       ),
-      n,
+      n_rows,
       replace = TRUE
     )
   )
@@ -114,7 +114,7 @@ generate_greenfeed_data <- function(n, type = "preliminary") {
   # the EndTime is the StartTime plus a random duration
   # between 2 minutes and 20 minutes
   # this is in seconds
-  sample_data$EndTime <- sample_data$StartTime + runif(n, 120, 1200)
+  sample_data$EndTime <- sample_data$StartTime + runif(n_rows, 120, 1200)
 
   sample_data$GoodDataDuration <- difftime(
     sample_data$EndTime,
