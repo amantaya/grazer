@@ -11,3 +11,4 @@
 ^\.vscode$
 ^scratch\.R$
 ^data-raw$
+^\.editorconfig$
