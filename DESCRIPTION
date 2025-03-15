@@ -13,12 +13,10 @@ Suggests:
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),
-    fs,
     dplyr,
     tibble
 Config/testthat/edition: 3
 Imports:
-    here,
     lubridate,
     openssl,
     readr,
