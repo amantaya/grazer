@@ -61,6 +61,7 @@ generate_eid <- function(seed = NULL) {
 #' - RunTime: A datetime value corresponding to the run time.
 #'
 #' @importFrom stats runif
+#' @importFrom stats rnorm
 #' @importFrom utils write.csv
 #' @importFrom lubridate ymd_hms
 #' @importFrom hms as_hms
