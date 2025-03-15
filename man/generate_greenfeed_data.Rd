@@ -4,10 +4,10 @@
 \alias{generate_greenfeed_data}
 \title{Generate synthetic GreenFeed data for testing or simulation.}
 \usage{
-generate_greenfeed_data(n, type = "preliminary")
+generate_greenfeed_data(n_rows, type = "preliminary")
 }
 \arguments{
-\item{n}{The number of rows of synthetic data to generate.}
+\item{n_rows}{The number of rows of synthetic data to generate.}
 
 \item{path}{A path to where the synthetic data should be saved.}
 
@@ -45,6 +45,6 @@ Generate synthetic GreenFeed data for testing or simulation.
 }
 \examples{
 \dontrun{
-generate_greenfeed_data("data/synthetic_prelim_greenfeed_data.csv", 1000)
+generate_greenfeed_data(n_rows = 1000, type = "preliminary")
 }
 }
