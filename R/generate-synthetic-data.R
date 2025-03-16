@@ -91,8 +91,9 @@ generate_rfid <- function(n) {
 generate_greenfeed_data <- function(n_rows, type = "preliminary") {
   sample_data <- data.frame(
     FeederID = sample(100:800, n_rows, replace = TRUE),
-    AnimalName = as.character(replicate(n_rows, generate_eid())),
-    RFID = as.character(replicate(n_rows, generate_eid())),
+    # NOTE: the 000000000 prefix is specific to the C-Lock System
+    AnimalName = paste0("000000000", generate_eid(n = n_rows)),
+    RFID = paste0("000000000", generate_eid(n = n_rows)),
     StartTime = sample(
       seq(
         lubridate::ymd_hms("2023-01-01 00:00:00"),
