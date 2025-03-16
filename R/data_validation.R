@@ -62,7 +62,7 @@ validate_eid_prefix <- function(eid) {
 #'
 #' @export
 #' @importFrom stringr str_length
-get_eid_length <- function(eid) {
+eid_length <- function(eid) {
   return(stringr::str_length(eid))
 }
 
