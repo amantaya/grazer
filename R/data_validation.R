@@ -41,7 +41,7 @@ validate_eid_prefix <- function(eid) {
   first_three_digits <- substr(eid, 1, 3)
 
   # NOTE: this is not a complete list of acceptable prefixes
-  accepatble_prefixes <- c(
+  acceptable_prefixes <- c(
     "840", # USA Country Code - USDA AIN Complaint
     "982", # Allflex
     "985", # Destron Fearing
