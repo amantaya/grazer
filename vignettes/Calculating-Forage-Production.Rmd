@@ -50,6 +50,26 @@ file_path <- fs::path_package(
 forage_data <- readr::read_csv(file_path)
 ```
 
+Alternatively, you can generate example data using the `generate_forage_data()` function. The `generate_forage_data()` function creates a data frame with simulated forage data for multiple pastures using a normal distribution. The function takes the following arguments:
+
+`n_rows`: The number of rows (i.e., pastures) in the data frame.
+
+`mean`: The mean weight of the forage sample.
+
+`sd`: The standard deviation of the forage sample.
+
+```{r generate_forage_data}
+set.seed(123)
+
+simulated_forage_data <-
+  grazer::generate_forage_data(
+    n_rows = 10,
+    mean = 100,
+    sd = 50
+  )
+head(simulated_forage_data)
+```
+
 Each row within the example data represents a different pasture, and the columns (e.g., Sample_1, Sample_2) represent the weight (in grams) of clipped and dried forage within the sampling frame at multiple sampling sites within the same pasture.
 
 ```{r head of forage data}
