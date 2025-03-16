@@ -9,9 +9,8 @@ generate_greenfeed_data(n_rows, type = "preliminary")
 \arguments{
 \item{n_rows}{The number of rows of synthetic data to generate.}
 
-\item{path}{A path to where the synthetic data should be saved.}
-
-\item{seed}{An optional seed for reproducibility.}
+\item{type}{The type of greenfeed data to generate.
+The default is "preliminary". The other option is "verified".}
 }
 \value{
 A CSV file containing synthetic GreenFeed data.
@@ -22,22 +21,37 @@ The data includes the following columns:
 \item RFID: A character value corresponding to the RFID.
 \item StartTime: A datetime value corresponding to the start time.
 \item EndTime: A datetime value corresponding to the end time.
-\item GoodDataDuration: A time value corresponding to the good data duration.
-\item CO2GramsPerDay: A numeric value corresponding to the CO2 grams per day.
-\item CH4GramsPerDay: A numeric value corresponding to the CH4 grams per day.
-\item O2GramsPerDay: A numeric value corresponding to the O2 grams per day.
-\item H2GramsPerDay: A numeric value corresponding to the H2 grams per day.
-\item H2SGramsPerDay: A numeric value corresponding to the H2S grams per day.
-\item AirflowLitersPerSec: A numeric value corresponding to the airflow in liters per second.
-\item AirflowCf: A numeric value corresponding to the airflow in cubic feet.
-\item WindSpeedMetersPerSec: A numeric value corresponding to the wind speed in meters per second.
+\item GoodDataDuration: A time value corresponding to the length
+of the observation in HH:MM:SS.
+\item CO2GramsPerDay: A numeric value corresponding to the carbon dioxide
+in grams per day.
+\item CH4GramsPerDay: A numeric value corresponding to the methane
+in grams per day.
+\item O2GramsPerDay: A numeric value corresponding to the oxygen
+in grams per day.
+\item H2GramsPerDay: A numeric value corresponding to the hydrogen
+in grams per day.
+\item H2SGramsPerDay: A numeric value corresponding to the hydrogen sulfide
+in grams per day.
+\item AirflowLitersPerSec: A numeric value corresponding to airflow in
+liters per second.
+\item AirflowCf: A numeric value corresponding to correction factor
+used to adjust gas measurements.
+\item WindSpeedMetersPerSec: A numeric value corresponding to the wind speed
+in meters per second.
 \item WindDirDeg: A numeric value corresponding to the wind direction in degrees.
 \item WindCf: A numeric value corresponding to the wind in cubic feet.
-\item WasInterrupted: A logical value indicating whether the data was interrupted.
-\item InterruptingTags: A character value corresponding to the interrupting tags.
-\item TempPipeDegreesCelsius: A numeric value corresponding to the temperature of the pipe in degrees Celsius.
+\item WasInterrupted: A logical value indicating whether the data was
+interrupted by another animal. If the data was interrupted,
+the value is TRUE; otherwise, it is FALSE.
+\item InterruptingTags: A character value corresponding to the interrupting
+RFID tags from the animals that interrupted the observation.
+\item TempPipeDegreesCelsius: A numeric value corresponding to the
+temperature of the pipe in degrees Celsius.
 \item IsPreliminary: A logical value indicating whether the data is preliminary.
-\item RunTime: A datetime value corresponding to the run time.
+If the data is preliminary, the value is TRUE; otherwise, it is FALSE.
+\item RunTime: A datetime value corresponding to when the observation
+was processed by C-Lock's pre-processor
 }
 }
 \description{
