@@ -89,6 +89,8 @@ calc_forage_prod <- function(
 #' @param n_rows The number of samples (rows) to generate.
 #'
 #' @return A data frame with random forage production data.
+#' The data frame will have columns named Sample_1, Sample_2, ..., Sample_5.
+#' Each 'Sample_' column represents a dried forage sample in grams.
 #'
 #' @examples
 #' generate_forage_data(10)
