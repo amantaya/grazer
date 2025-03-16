@@ -29,45 +29,29 @@ test_that("all eid numbers are unique within a set", {
 
 test_that("generate_forage_data generates correct number of rows and columns", {
   set.seed(123) # Set seed for reproducibility
-
   data <- generate_forage_data(n_rows = 10)
-
-  # Check that the data frame has the correct number of rows
   expect_equal(nrow(data), 10)
-
-  # Check that the data frame has 5 columns
   expect_equal(ncol(data), 5)
 })
 
 test_that("generate_forage_data generates non-negative values", {
   set.seed(123) # Set seed for reproducibility
-
   data <- generate_forage_data(n_rows = 10)
-
-  # Check that all values are non-negative
   expect_true(all(data >= 0))
 })
 
 test_that("generate_forage_data generates different values with different seeds", { # nolint: line_length_linter
-  set.seed(123) # Set seed for reproducibility
-
+  set.seed(123) # Set seed for the first call
   data1 <- generate_forage_data(n_rows = 10)
-
   set.seed(456) # Set a different seed for the second call
   data2 <- generate_forage_data(n_rows = 10)
-
-  # Check that the generated data frames are not identical
   expect_false(identical(data1, data2))
 })
 
 test_that("generate_forage_data generates the same values with the same seed", {
-  set.seed(123) # Set seed for reproducibility
-
+  set.seed(123) # Set seed for the first call
   data1 <- generate_forage_data(n_rows = 10)
-
-  set.seed(123) # Set a different seed for the second call
+  set.seed(123) # Set the same seed for the second call
   data2 <- generate_forage_data(n_rows = 10)
-
-  # Check that the generated data frames are not identical
   expect_true(identical(data1, data2))
 })
