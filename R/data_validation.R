@@ -37,9 +37,7 @@ validate_eid_prefix <- function(eid) {
   if (is.na(eid)) {
     return(FALSE)
   }
-
   first_three_digits <- substr(eid, 1, 3)
-
   # NOTE: this is not a complete list of acceptable prefixes
   acceptable_prefixes <- c(
     "840", # USA Country Code - USDA AIN Complaint
@@ -48,7 +46,8 @@ validate_eid_prefix <- function(eid) {
     "942", # Zee Tags
     "949" # Y-Tex
   )
-  return(first_three_digits %in% accepatble_prefixes)
+  valid_eid_prefix <- first_three_digits %in% acceptable_prefixes
+  valid_eid_prefix
 }
 
 #' @title Get Length of EID
