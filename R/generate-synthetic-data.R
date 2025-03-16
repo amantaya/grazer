@@ -12,7 +12,7 @@
 #' @export
 generate_eid <- function(n) {
   # TODO - add a argument to generate EID numbers with a specific prefix
-  eid_number <- sample(0:999999999999999, n, replace = FALSE)
+  eid_number <- sample(111111111111111:999999999999999, n, replace = FALSE)
   eid_number
 }
 
