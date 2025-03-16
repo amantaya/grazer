@@ -1,4 +1,4 @@
-test_that("no negative gas values", {
+test_that("generate_greenfeed_data has no negative gas values", {
   data <- generate_greenfeed_data(n_rows = 100, type = "preliminary")
   expect_true(all(data$CH4GramsPerDay >= 0))
   expect_true(all(data$CO2GramsPerDay >= 0))
@@ -10,19 +10,19 @@ test_that("no negative gas values", {
   expect_true(all(data$WindSpeedMetersPerSec >= 0))
 })
 
-test_that("WindDirDeg values between 0 and 360", {
+test_that("generate_greenfeed_data WindDirDeg values between 0 and 360", {
   data <- generate_greenfeed_data(n_rows = 100, type = "preliminary")
   expect_true(all(data$WindDirDeg >= 0))
   expect_true(all(data$WindDirDeg <= 360))
 })
 
-test_that("eid length is exactly 15", {
+test_that("generate_eid eid length is exactly 15", {
   eid_numbers <- generate_eid(100)
   eid_length <- eid_length(eid_numbers)
   expect_true(all(eid_length == 15))
 })
 
-test_that("all eid numbers are unique within a set", {
+test_that("generate_eid all eid numbers are unique within a set", {
   eid_numbers <- generate_eid(100)
   expect_true(length(unique(eid_numbers)) == length(eid_numbers))
 })
