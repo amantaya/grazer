@@ -17,6 +17,6 @@ An integer representing the length of the EID.
 Get Length of EID
 }
 \examples{
-eid_length("123456789012345") # returns 15
+get_eid_length("123456789012345") # returns 15
 
 }
