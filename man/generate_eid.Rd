@@ -2,21 +2,22 @@
 % Please edit documentation in R/generate-synthetic-data.R
 \name{generate_eid}
 \alias{generate_eid}
-\title{Title}
+\title{Generate Electronic Identification (EID) numbers.}
 \usage{
-generate_eid(seed = NULL)
+generate_eid(n)
 }
 \arguments{
-\item{seed}{An optional seed for reproducibility.}
+\item{n}{A numeric value corresponding to the number of
+EID (Electronic Identifier) numbers to generate.}
 }
 \value{
-A numeric value corresponding to the RFID.
-The first 9 digits are all zeros. The last 15 digits are randomly generated.
+A vector of EID numbers. Each EID number is a 15-digit integer.
+The EID numbers are generated randomly and are unique within the set.
 }
 \description{
-Title
+Generate Electronic Identification (EID) numbers.
 }
 \examples{
-generate_eid(seed = 123)
+generate_eid(n = 10)
 
 }
