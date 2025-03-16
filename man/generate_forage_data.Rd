@@ -8,9 +8,13 @@ generate_forage_data(n_rows, mean = 100, sd = 50)
 }
 \arguments{
 \item{n_rows}{The number of samples (rows) to generate.}
+
+\item{mean}{The mean value for the forage samples.}
+
+\item{sd}{The standard deviation for the forage samples.}
 }
 \value{
-A data frame with random forage production data.
+A data frame with simulated forage production data.
 The data frame will have columns named Sample_1, Sample_2, ..., Sample_5.
 Each 'Sample_' column represents a dried forage sample in grams.
 }
@@ -18,6 +22,6 @@ Each 'Sample_' column represents a dried forage sample in grams.
 Generate a Random Sample of Forage Production Data
 }
 \examples{
-generate_forage_data(10)
+generate_forage_data(n_rows = 10)
 
 }
