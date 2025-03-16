@@ -9,12 +9,26 @@
 #' @examples
 #' generate_eid(n = 10)
 #'
-#' @importFrom stats sample
 #' @export
-# TODO - create an alias for this function called `generate_rfid`
 generate_eid <- function(n) {
   eid_number <- sample(0:999999999999999, n, replace = FALSE)
   eid_number
+}
+
+#' Generate RFID numbers (alias for generate_eid).
+#'
+#' @param n A numeric value corresponding to the number of
+#' RFID (Radio Frequency Identifier) numbers to generate.
+#'
+#' @return A vector of RFID numbers. Each RFID number is a 15-digit integer.
+#' The RFID numbers are generated randomly and are unique within the set.
+#'
+#' @examples
+#' generate_rfid(n = 10)
+#'
+#' @export
+generate_rfid <- function(n) {
+  generate_eid(n)
 }
 
 #' Generate synthetic GreenFeed data for testing or simulation.
