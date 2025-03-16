@@ -83,27 +83,3 @@ calc_forage_prod <- function(
   }
   forage_production
 }
-
-#' Generate a Random Sample of Forage Production Data
-#'
-#' @param n_rows The number of samples (rows) to generate.
-#'
-#' @return A data frame with random forage production data.
-#' The data frame will have columns named Sample_1, Sample_2, ..., Sample_5.
-#' Each 'Sample_' column represents a dried forage sample in grams.
-#'
-#' @examples
-#' generate_forage_data(10)
-#'
-#' @export
-generate_forage_data <- function(n_rows, mean = 100, sd = 50) {
-  production_data <- data.frame(
-    # the `pmax` function ensures that the values are non-negative
-    Sample_1 = pmax(rnorm(n = n_rows, mean = mean, sd = sd), 0),
-    Sample_2 = pmax(rnorm(n = n_rows, mean = mean, sd = sd), 0),
-    Sample_3 = pmax(rnorm(n = n_rows, mean = mean, sd = sd), 0),
-    Sample_4 = pmax(rnorm(n = n_rows, mean = mean, sd = sd), 0),
-    Sample_5 = pmax(rnorm(n = n_rows, mean = mean, sd = sd), 0)
-  )
-  production_data
-}
