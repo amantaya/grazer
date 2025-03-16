@@ -1,40 +1,27 @@
-#' Title
+#' Generate Electronic Identification (EID) numbers.
 #'
-#' @param seed An optional seed for reproducibility.
+#' @param n A numeric value corresponding to the number of
+#' EID (Electronic Identifier) numbers to generate.
 #'
-#' @return A numeric value corresponding to the RFID.
-#' The first 9 digits are all zeros. The last 15 digits are randomly generated.
+#' @return A vector of EID numbers. Each EID number is a 15-digit integer.
+#' The EID numbers are generated randomly and are unique within the set.
 #'
 #' @examples
-#' generate_eid(seed = 123)
+#' generate_eid(n = 10)
 #'
+#' @importFrom stats sample
 #' @export
 # TODO - create an alias for this function called `generate_rfid`
-generate_eid <- function(seed = NULL) {
-  # if seed is not NULL, set the supplied seed for reproducibility
-  if (!is.null(seed)) {
-    set.seed(seed)
-  } else {
-    # TODO - remove this line. Seeds should be set by the user.
-    set.seed(123)
-  }
-  # Generate the last 15 digits as a random number
-  last_15_digits <- sample(0:999999999999999, 1)
-  # Concatenate the first 9 digits (all zeros) with the last 15 digits
-  # to create a 24-digit RFID
-  # this converts the number to a string
-  # TODO - the leading zeros are specific to C-Lock and we should have an option to remove them
-  rfid <- paste0("000000000", last_15_digits)
-  # convert the string to a number
-  as.numeric(rfid)
-  return(rfid)
+generate_eid <- function(n) {
+  eid_number <- sample(0:999999999999999, n, replace = FALSE)
+  eid_number
 }
 
 #' Generate synthetic GreenFeed data for testing or simulation.
 #'
-#' @param path A path to where the synthetic data should be saved.
 #' @param n_rows The number of rows of synthetic data to generate.
-#' @param seed An optional seed for reproducibility.
+#' @param type The type of greenfeed data to generate.
+#' The default is "preliminary". The other option is "verified".
 #'
 #' @return A CSV file containing synthetic GreenFeed data.
 #' The data includes the following columns:
@@ -43,22 +30,37 @@ generate_eid <- function(seed = NULL) {
 #' - RFID: A character value corresponding to the RFID.
 #' - StartTime: A datetime value corresponding to the start time.
 #' - EndTime: A datetime value corresponding to the end time.
-#' - GoodDataDuration: A time value corresponding to the good data duration.
-#' - CO2GramsPerDay: A numeric value corresponding to the CO2 grams per day.
-#' - CH4GramsPerDay: A numeric value corresponding to the CH4 grams per day.
-#' - O2GramsPerDay: A numeric value corresponding to the O2 grams per day.
-#' - H2GramsPerDay: A numeric value corresponding to the H2 grams per day.
-#' - H2SGramsPerDay: A numeric value corresponding to the H2S grams per day.
-#' - AirflowLitersPerSec: A numeric value corresponding to the airflow in liters per second.
-#' - AirflowCf: A numeric value corresponding to the airflow in cubic feet.
-#' - WindSpeedMetersPerSec: A numeric value corresponding to the wind speed in meters per second.
+#' - GoodDataDuration: A time value corresponding to the length
+#' of the observation in HH:MM:SS.
+#' - CO2GramsPerDay: A numeric value corresponding to the carbon dioxide
+#' in grams per day.
+#' - CH4GramsPerDay: A numeric value corresponding to the methane
+#' in grams per day.
+#' - O2GramsPerDay: A numeric value corresponding to the oxygen
+#' in grams per day.
+#' - H2GramsPerDay: A numeric value corresponding to the hydrogen
+#' in grams per day.
+#' - H2SGramsPerDay: A numeric value corresponding to the hydrogen sulfide
+#' in grams per day.
+#' - AirflowLitersPerSec: A numeric value corresponding to airflow in
+#' liters per second.
+#' - AirflowCf: A numeric value corresponding to correction factor
+#' used to adjust gas measurements.
+#' - WindSpeedMetersPerSec: A numeric value corresponding to the wind speed
+#' in meters per second.
 #' - WindDirDeg: A numeric value corresponding to the wind direction in degrees.
 #' - WindCf: A numeric value corresponding to the wind in cubic feet.
-#' - WasInterrupted: A logical value indicating whether the data was interrupted.
-#' - InterruptingTags: A character value corresponding to the interrupting tags.
-#' - TempPipeDegreesCelsius: A numeric value corresponding to the temperature of the pipe in degrees Celsius.
+#' - WasInterrupted: A logical value indicating whether the data was
+#' interrupted by another animal. If the data was interrupted,
+#' the value is TRUE; otherwise, it is FALSE.
+#' - InterruptingTags: A character value corresponding to the interrupting
+#' RFID tags from the animals that interrupted the observation.
+#' - TempPipeDegreesCelsius: A numeric value corresponding to the
+#' temperature of the pipe in degrees Celsius.
 #' - IsPreliminary: A logical value indicating whether the data is preliminary.
-#' - RunTime: A datetime value corresponding to the run time.
+#' If the data is preliminary, the value is TRUE; otherwise, it is FALSE.
+#' - RunTime: A datetime value corresponding to when the observation
+#' was processed by C-Lock's pre-processor
 #'
 #' @importFrom stats runif
 #' @importFrom stats rnorm
@@ -122,7 +124,10 @@ generate_greenfeed_data <- function(n_rows, type = "preliminary") {
     sample_data$StartTime,
     units = "secs"
   )
-  sample_data$GoodDataDuration <- round(sample_data$GoodDataDuration, digits = 0)
+  sample_data$GoodDataDuration <- round(
+    sample_data$GoodDataDuration,
+    digits = 0
+  )
 
   sample_data$GoodDataDuration <- hms::as_hms(sample_data$GoodDataDuration)
 
