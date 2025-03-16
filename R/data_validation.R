@@ -16,7 +16,8 @@ validate_eid_length <- function(eid) {
   if (is.na(eid)) {
     return(FALSE)
   }
-  return(nchar(eid) == 15)
+  valid_eid <- (nchar(eid) == 15)
+  valid_eid
 }
 
 #' @title Validate EID Prefix
