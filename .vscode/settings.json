@@ -1,4 +1,7 @@
 {
     "r.rterm.linux": "/usr/local/bin/R",
-    "RTestAdapter.RscriptPath": "/usr/local/bin/Rscript"
+    "RTestAdapter.RscriptPath": "/usr/local/bin/Rscript",
+    "cSpell.words": [
+        "Destron"
+    ]
 }
