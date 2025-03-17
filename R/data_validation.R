@@ -88,11 +88,14 @@ eid_length <- function(eid) {
 #' eid_type(NA) # returns NA_character_
 #' @export
 eid_type <- function(eid) {
+  valid_eid_length <- validate_eid_length(eid)
+  valid_eid_prefix <- validate_eid_prefix(eid)
   if (is.na(eid)) {
     return(NA_character_)
   }
-  valid_eid_length <- validate_eid_length(eid)
-  valid_eid_prefix <- validate_eid_prefix(eid)
+if (valid_eid_prefix == FALSE) {
+    return(NA_character_)
+  }
   if (valid_eid_length && valid_eid_prefix) {
     prefix <- eid_prefix(eid)
     # NOTE: this is not a complete list of manufacturers
