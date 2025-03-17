@@ -93,7 +93,7 @@ eid_type <- function(eid) {
   if (is.na(eid)) {
     return(NA_character_)
   }
-if (valid_eid_prefix == FALSE) {
+  if (valid_eid_prefix == FALSE) {
     return(NA_character_)
   }
   if (valid_eid_length && valid_eid_prefix) {
