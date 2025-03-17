@@ -18,7 +18,6 @@ Suggests:
 Config/testthat/edition: 3
 Imports:
     lubridate,
-    openssl,
     readr,
     stringr,
     units,
