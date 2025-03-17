@@ -88,20 +88,24 @@ eid_type <- function(eid) {
   if (is.na(eid)) {
     return(NA_character_)
   }
-  first_three_digits <- substr(eid, 1, 3)
-  # NOTE: this is not a complete list of manufacturers
-  if (first_three_digits == "840") {
-    return("USDA Animal Identification Number")
-  } else if (first_three_digits == "982") {
-    return("Allflex")
-  } else if (first_three_digits == "985") {
-    return("Destron Fearing")
-  } else if (first_three_digits == "942") {
-    return("Zee Tags")
-  } else if (first_three_digits == "949") {
-    return("Y-Tex")
-  } else {
-    return(NA_character_)
+  valid_eid_length <- validate_eid_length(eid)
+  valid_eid_prefix <- validate_eid_prefix(eid)
+  if (valid_eid_length && valid_eid_prefix) {
+    first_three_digits <- substr(eid, 1, 3)
+    # NOTE: this is not a complete list of manufacturers
+    if (first_three_digits == "840") {
+      "USDA Animal Identification Number"
+    } else if (first_three_digits == "982") {
+      "Allflex"
+    } else if (first_three_digits == "985") {
+      "Destron Fearing"
+    } else if (first_three_digits == "942") {
+      "Zee Tags"
+    } else if (first_three_digits == "949") {
+      "Y-Tex"
+    } else {
+      NA_character_
+    }
   }
 }
 
