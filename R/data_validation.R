@@ -75,13 +75,13 @@ eid_length <- function(eid) {
 #' @return A character string representing the manufacturer or type of the EID.
 #'
 #' @examples
-#' get_eid_type("982012345678901") # returns "Allflex"
-#' get_eid_type("985012345678901") # returns "Destron Fearing"
-#' get_eid_type("840012345678901") # returns "USDA Animal Identification Number"
-#' get_eid_type("123456789012345") # returns NA_character_
-#' get_eid_type(NA) # returns NA_character_
+#' eid_type("982012345678901") # returns "Allflex"
+#' eid_type("985012345678901") # returns "Destron Fearing"
+#' eid_type("840012345678901") # returns "USDA Animal Identification Number"
+#' eid_type("123456789012345") # returns NA_character_
+#' eid_type(NA) # returns NA_character_
 #' @export
-get_eid_type <- function(eid) {
+eid_type <- function(eid) {
   if (is.na(eid)) {
     return(NA_character_)
   }
@@ -110,15 +110,16 @@ get_eid_type <- function(eid) {
 #' @return A character string with the first three digits of the EID.
 #'
 #' @examples
-#' get_eid_prefix("982012345678901") # returns "982"
-#' get_eid_prefix("985012345678901") # returns "985"
+#' eid_prefix("982012345678901") # returns "982"
+#' eid_prefix("985012345678901") # returns "985"
 #'
 #' @export
-get_eid_prefix <- function(eid) {
+eid_prefix <- function(eid) {
   if (is.na(eid)) {
-    return(NA_character_)
+    NA_character_
+  } else {
+    substr(eid, 1, 3)
   }
-  return(substr(eid, 1, 3))
 }
 
 # TODO - function to check for invalid dates in a column
