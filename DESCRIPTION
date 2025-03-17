@@ -1,5 +1,5 @@
 Package: grazer
-Title: What the Package Does (One Line, Title Case)
+Title: Tools for Analyzing Animal Grazing Data in R
 Version: 0.0.0.9001
 Authors@R:
     person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
