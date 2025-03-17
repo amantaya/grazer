@@ -109,7 +109,7 @@ eid_type <- function(eid) {
   }
 }
 
-#' @title Get the Prefix of an EID
+#' Get the Prefix of an EID
 #'
 #' @param eid A character string representing
 #' the electronic identification number (EID) of an animal.
