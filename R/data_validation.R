@@ -40,7 +40,7 @@ validate_eid_prefix <- function(eid) {
   if (is.na(eid)) {
     return(FALSE)
   }
-  first_three_digits <- substr(eid, 1, 3)
+  prefix <- substr(eid, 1, 3)
   # NOTE: this is not a complete list of acceptable prefixes
   acceptable_prefixes <- c(
     "840", # USA Country Code - USDA AIN Complaint
@@ -49,7 +49,7 @@ validate_eid_prefix <- function(eid) {
     "942", # Zee Tags
     "949" # Y-Tex
   )
-  valid_eid_prefix <- first_three_digits %in% acceptable_prefixes
+  valid_eid_prefix <- prefix %in% acceptable_prefixes
   if (!valid_eid_prefix) {
     message("EID does not have a valid prefix.")
   }
@@ -94,17 +94,17 @@ eid_type <- function(eid) {
   valid_eid_length <- validate_eid_length(eid)
   valid_eid_prefix <- validate_eid_prefix(eid)
   if (valid_eid_length && valid_eid_prefix) {
-    first_three_digits <- substr(eid, 1, 3)
+    prefix <- eid_prefix(eid)
     # NOTE: this is not a complete list of manufacturers
-    if (first_three_digits == "840") {
+    if (prefix == "840") {
       "USDA Animal Identification Number"
-    } else if (first_three_digits == "982") {
+    } else if (prefix == "982") {
       "Allflex"
-    } else if (first_three_digits == "985") {
+    } else if (prefix == "985") {
       "Destron Fearing"
-    } else if (first_three_digits == "942") {
+    } else if (prefix == "942") {
       "Zee Tags"
-    } else if (first_three_digits == "949") {
+    } else if (prefix == "949") {
       "Y-Tex"
     } else {
       NA_character_
