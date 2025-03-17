@@ -42,6 +42,13 @@ test_that("eid with missing value returns FALSE", {
   expect_equal(validate_eid_prefix(NA), FALSE)
 })
 
+test_that("eid with incorrect prefix alerts the user", {
+  expect_message(
+    validate_eid_prefix("123456789012345"),
+    "EID does not have a valid prefix."
+  )
+})
+
 test_that("eid with length 15 returns 15", {
   expect_equal(eid_length("123456789012345"), 15)
 })
