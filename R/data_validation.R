@@ -47,6 +47,9 @@ validate_eid_prefix <- function(eid) {
     "949" # Y-Tex
   )
   valid_eid_prefix <- first_three_digits %in% acceptable_prefixes
+  if (!valid_eid_prefix) {
+    message("EID does not have a valid prefix.")
+  }
   valid_eid_prefix
 }
 
