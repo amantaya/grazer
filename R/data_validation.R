@@ -17,6 +17,9 @@ validate_eid_length <- function(eid) {
     return(FALSE)
   }
   valid_eid <- (nchar(eid) == 15)
+  if (!valid_eid) {
+    warning("EID is not 15 characters in length.")
+  }
   valid_eid
 }
 
@@ -48,7 +51,7 @@ validate_eid_prefix <- function(eid) {
   )
   valid_eid_prefix <- first_three_digits %in% acceptable_prefixes
   if (!valid_eid_prefix) {
-    message("EID does not have a valid prefix.")
+    warning("EID does not have a valid prefix.")
   }
   valid_eid_prefix
 }
